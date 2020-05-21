@@ -1,0 +1,19 @@
+{
+  "name": "the-kartos-network",
+  "version": "1.0.0",
+  "description": "Social Profiles by Tech Kratos",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zaio-kratos/the-kartos-network.git"
+  },
+  "author": "Srujan Deshpande, Avinash VK",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/zaio-kratos/the-kartos-network/issues"
+  },
+  "homepage": "https://github.com/zaio-kratos/the-kartos-network#readme"
+}
