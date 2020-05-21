@@ -11,9 +11,14 @@
     "url": "git+https://github.com/zaio-kratos/the-kartos-network.git"
   },
   "author": "Srujan Deshpande, Avinash VK",
-  "license": "MIT",
   "bugs": {
     "url": "https://github.com/zaio-kratos/the-kartos-network/issues"
   },
-  "homepage": "https://github.com/zaio-kratos/the-kartos-network#readme"
+  "homepage": "https://github.com/zaio-kratos/the-kartos-network#readme",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "mongoose": "^5.9.15"
+  }
 }
