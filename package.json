@@ -1,5 +1,5 @@
 {
-  "name": "the-kartos-network",
+  "name": "the-kratos-network",
   "version": "1.0.0",
   "description": "Social Profiles by Tech Kratos",
   "main": "index.js",
@@ -8,13 +8,13 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/zaio-kratos/the-kartos-network.git"
+    "url": "git+https://github.com/zaio-kratos/the-kratos-network.git"
   },
   "author": "Srujan Deshpande, Avinash VK",
   "bugs": {
-    "url": "https://github.com/zaio-kratos/the-kartos-network/issues"
+    "url": "https://github.com/zaio-kratos/the-kratos-network/issues"
   },
-  "homepage": "https://github.com/zaio-kratos/the-kartos-network#readme",
+  "homepage": "https://github.com/zaio-kratos/the-kratos-network#readme",
   "dependencies": {
     "body-parser": "^1.19.0",
     "cors": "^2.8.5",
