@@ -13,7 +13,9 @@ import PublicViewProfile from './components/profile/PublicViewProfile'
 
 import Fireapp from './config/firebaseConfig'
 
+
 function App() {
+  const auth = Fireapp.auth().currentUser
   return (
     <BrowserRouter>
     <div className="App">
@@ -22,7 +24,7 @@ function App() {
         <Route exact path='/' component = {LandingPage}/>
         <Route path='/signin' component = {SignIn}/>
         <Route path='/signup' component = {SignUp}/>
-        <Route path='/profiles' component = {Dashboard}/>
+        <Route exact path='/profiles' component = {Dashboard}/>
         <Route path='/createprofile' component = {CreateProfile}/>
         <Route path='/profile/:name/:id' component = {PublicViewProfile}/>
         <Route path='/editprofile/:name/:id' component = {EditProfile}/>

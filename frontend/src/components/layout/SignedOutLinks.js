@@ -1,9 +1,13 @@
-import React from 'react'
+import React from 'react';
+import {NavLink} from 'react-router-dom';
 
-export default function SignedOutLinks() {
-    return (
-        <div>
-            sign in
-        </div>
+const SignedOutLinks = () => {
+    return(
+        <ul className="right">
+            <li><NavLink to='/signin'>Log in</NavLink></li>
+        </ul>
     )
 }
+
+
+export default SignedOutLinks;

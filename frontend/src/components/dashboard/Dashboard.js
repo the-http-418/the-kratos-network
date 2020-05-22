@@ -1,12 +1,19 @@
 import React from 'react'
 import ProfileList from '../profile/ProfileList'
-export default function Dashboard() {
-    return (
-        <div>
+import Fireapp from '../../config/firebaseConfig'
 
-            welcome to dashboard
+class Dashboard extends React.Component
+{
+    
+    render(){
+        return (
+            <div>
 
-            <ProfileList/>
-        </div>
-    )
+                welcome to dashboard
+
+                <ProfileList/>
+            </div>
+        )
+    }
 }
+export default Dashboard
