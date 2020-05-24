@@ -10,13 +10,13 @@ import EditProfile from './components/profile/EditProfile'
 import CreateProfile from './components/profile/CreateProfile'
 import PreviewProfileView from './components/profile/PreviewProfileView'
 import PublicViewProfile from './components/profile/PublicViewProfile'
-
 import Fireapp from './config/firebaseConfig'
 
 
 function App() {
   const auth = Fireapp.auth().currentUser
   return (
+    
     <BrowserRouter>
     <div className="App">
       <Navbar/>
@@ -32,6 +32,7 @@ function App() {
       </Switch>
     </div>
     </BrowserRouter>
+    
   );
 }
 
