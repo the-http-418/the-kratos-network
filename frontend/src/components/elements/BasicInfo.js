@@ -132,12 +132,19 @@ class Bio extends Component {
     }
     componentDidMount(){
         //firebase call
+        this.setState({
+            profilePicture : null,
+            firstName : 'PAtrick',
+            lastName : 'Rashidi',
+            header : 'Zaio Dev',
+            designation : 'Full stack developer and automation',
+            links : ['youtube.com','github.com'],
+        })
     }
     render() {
         return (
             <div className="education profile-view">
-                <h5>EDUCATION</h5>
-                <hr/>
+                
                 <div className="container ouput-bio">
                     
                 
@@ -147,8 +154,9 @@ class Bio extends Component {
                 </div>
                 <div className="information">
                 <p>{this.state.header}</p>
-                <p>{this.state.firstName} {this.state.firstName}</p>
+                <p>{this.state.firstName} {this.state.lastName}</p>
                 <p>{this.state.designation}</p>
+                <h6><b>Meet me</b></h6>
                 {
                     this.state.links.map((link)=>
                     {
@@ -168,3 +176,4 @@ class Bio extends Component {
 
 
 export default BasicInfoForm
+export {Bio}

@@ -158,13 +158,16 @@ class ExperienceForm extends Component {
 
 
 
-class Experience extends Component {
+class ExperienceList extends Component {
     state={
         workExperience : [],
         //{companyName","role","startDate","endDate","description"}
     }
     componentDidMount(){
         //firebase call
+        this.setState({
+            workExperience:[{"companyName":"Aerobotics","role":"Devops Intern","startDate":"December 2019","endDate":"Present","description":"Build and align aerial imagery taken with drones and troubleshoot where automated processing failed. Also Trac image processing jobs using the web based platform and SQL."},]
+        })
     }
     render() {
         return (
@@ -196,14 +199,15 @@ const Work = (props) =>{
         <div className="container work">
             <div className="heading">
                 <img src="/img/default-company.png" className = "company-logo profile-view"/>
-                <p>{this.props.companyName}</p>
-                <p>{this.props.role}</p>
-                <p>{this.props.startDate} - {this.props.endDate}</p>
+                <p>{props.companyName}</p>
+                <p>{props.role}</p>
+                <p>{props.startDate} - {props.endDate}</p>
             </div>
             <div className="description">
-                {this.props.description}
+                {props.description}
             </div>
         </div>
     )
 }
 export default ExperienceForm
+export {ExperienceList}

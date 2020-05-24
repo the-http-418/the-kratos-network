@@ -106,13 +106,16 @@ class EducationForm extends Component {
 
 
 
-class EducationComp extends Component {
+class EducationList extends Component {
     state={
         education : [],
         //{collegeName,stream,accolade}
     }
     componentDidMount(){
         //firebase call
+        this.setState({
+            education:[{"collegeName":"Harvard","stream":"Computer science and engineering","accolade":"Graduated with diploma"}]
+        })
     }
     render() {
         return (
@@ -121,12 +124,12 @@ class EducationComp extends Component {
                 <hr/>
                 <div className="container ouput-education">
                     {
-                        this.state.education.map((school)=>{
+                        this.state.education.map((school,idx)=>{
                             return(
                                 <School 
-                                    collegeName = {this.props.collegeName}
-                                    stream = {this.props.stream}
-                                    accolade = {this.props.accolade}
+                                    collegeName = {this.state.education[idx]['collegeName']}
+                                    stream = {this.state.education[idx]['stream']}
+                                    accolade = {this.state.education[idx]['accolade']}
                                 />
                             )
                         })
@@ -142,12 +145,14 @@ const School = (props) =>{
         <div className="container work">
             <div className="heading">
                 <img src="/img/default_college.jpg" className = "company-logo profile-view"/>
-                <p>{this.props.collegeName}</p>
-                <p>{this.props.stream}</p>
-                <p>{this.props.accolade}</p>
+                <p>{props.collegeName}</p>
+            <p>{props.stream}</p>
+                <p>{props.accolade}</p>
             </div>
         </div>
     )
 }
 
+
 export default EducationForm
+export {EducationList}
