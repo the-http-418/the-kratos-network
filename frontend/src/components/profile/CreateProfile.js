@@ -10,6 +10,7 @@ export default class CreateProfile extends React.Component {
         M.Tabs.init(this.Tabs);
       }
       render() {
+        console.log("in create profile ..",this.props.profile)
         return (
           <>
             <ul
@@ -37,19 +38,19 @@ export default class CreateProfile extends React.Component {
             </ul>
     
             <div id="test-swipe-1">
-              <BasicInfoForm/>
+              <BasicInfoForm edit={this.props.edit} profile={this.props.profile}/>
             </div>
             <div id="test-swipe-2" >
-              <EducationForm/>
+              <EducationForm edit={this.props.edit} profile={this.props.profile}/>
             </div>
             <div id="test-swipe-3" >
-              <ExperienceForm/>
+              <ExperienceForm edit={this.props.edit} profile={this.props.profile}/>
             </div>
             <div id="test-swipe-4" >
-              <HardSkillsForm/>
+              <HardSkillsForm edit={this.props.edit} profile={this.props.profile}/>
             </div>
             <div id="test-swipe-5" >
-              <SoftSkillsForm/>
+              <SoftSkillsForm edit={this.props.edit} profile={this.props.profile}/>
             </div>
           </>
         );

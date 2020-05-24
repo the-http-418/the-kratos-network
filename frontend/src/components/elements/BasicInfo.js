@@ -56,8 +56,22 @@ class BasicInfoForm extends Component {
             links:[...links,""]
         })
     }
-
+    componentDidMount(){
+        console.log("in basicinfo profile ..",this.props.profile)
+        if (this.props.edit){
+            const bio = this.props.profile['bio']
+            this.setState({
+                profilePicture :bio['profilePicture'],
+                firstName : bio['firstName'],
+                lastName : bio['lastName'],
+                header : bio['header'],
+                designation : bio['designation'],
+                links : bio['links'],
+            })
+        }
+    }
     render() {
+        
         return (
             <div className="container">
                 <form onSubmit ={this.handleSubmit} className = "white">
@@ -67,23 +81,23 @@ class BasicInfoForm extends Component {
                     <hr/>
                     <div className="input-field">
                         Upload your dp:
-                        <input type="file" id = "profilePicture" onChange={this.handleImageChange} />
+                        <input type="file" file= {this.state.profilePicture} id = "profilePicture" onChange={this.handleImageChange} />
                     </div>
                     <div className="input-field">
                         <label htmlFor="firstName">First Name</label>
-                        <input type="text" id = "firstName" onChange={this.handleChange} />
+                        <input type="text" value = {this.state.firstName} id = "firstName" onChange={this.handleChange} />
                     </div>
                     <div className="input-field">
                         <label htmlFor="lastName">Last Name</label>
-                        <input type="text" id = "lastName" onChange={this.handleChange} />
+                        <input type="text" id = "lastName" value = {this.state.lastName} onChange={this.handleChange} />
                     </div>
                     <div className="input-field">
                         <label htmlFor="header">Give a two word header about you</label>
-                        <input type="text" id = "header" onChange={this.handleChange} />
+                        <input type="text" id = "header" value = {this.state.header}  onChange={this.handleChange} />
                     </div>
                     <div className="input-field">
                         <label htmlFor="designation">designation</label>
-                        <input type="text" id = "designation" onChange={this.handleChange} />
+                        <input type="text" id = "designation" value = {this.state.designation} onChange={this.handleChange} />
                     </div>
                     Links:
                     {
@@ -92,6 +106,7 @@ class BasicInfoForm extends Component {
                                 <input
                                     type="text"
                                     id = {idx}
+                                    value = {link}
                                     placeholder="Enter your link url"
                                     onChange={(e) => this.handleLinkChange(idx,e)}
   

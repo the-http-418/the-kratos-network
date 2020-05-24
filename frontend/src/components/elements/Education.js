@@ -37,7 +37,14 @@ class EducationForm extends Component {
             education:[...education,{"collegeName":"","stream":"","accolade":""}]
         })
     }
-    
+    componentDidMount(){
+        if (this.props.edit){
+            const education = this.props.profile['education']
+            this.setState({
+                education:education
+            })
+        }
+    }
     render() {
         
         return (
@@ -63,18 +70,21 @@ class EducationForm extends Component {
                                     type="text"
                                     id = 'collegeName'
                                     placeholder="Enter College Name"
+                                    value = {school['collegeName']}
                                     list = "college-list"
                                     onChange={(e) => this.handleChange(idx,e)}
                                 />
                                 <input
                                     type="text"
                                     id = 'stream'
+                                    value = {school['stream']}
                                     placeholder="Enter Stream Name"
                                     onChange={(e) => this.handleChange(idx,e)}
                                 />
                                 <input
                                     type="text"
                                     id = 'accolade'
+                                    value = {school['accolade']}
                                     placeholder="Enter accolade"
                                     onChange={(e) => this.handleChange(idx,e)}
                                 />
