@@ -1,29 +1,56 @@
 import React,{Component} from 'react'
+import Fireapp from '../../config/firebaseConfig'
 
 class ProfileList extends Component {
     state = {
         profiles : [],
+        
     }
     componentDidMount(){
-        //firebase call
-        this.setState({
-            profiles : [
-                {'firstName':'Patrick','lastName':'Rashidi','heading':'zaio developer','id':'DSDJNDO3904','profilePicture':'/img/default_dp.jpg'},
-            ]
-        })
+        
+        const db = Fireapp.firestore()
+        const profiles = []
+        const col = db.collection("profiles")
+        const tmp = []
+        db.collection("profiles").get().then(
+            (document) => {
+                document.forEach((doc)=>{
+                var x = doc.data()['bio']
+                x['id'] = doc.id
+                tmp.push(x)
+                this.setState({
+                    profiles:tmp,
+                })
+            })
+        }
+        )
+        
+        /*const bio = []
+        for(var i=0;i<tmp.length;i++){
+            const x = tmp[i]['data']['bio']
+            x['id'] = tmp[i]['id']
+            bio.push(x)
+        }*/
+        
+        
     }
 
     render(){
+    console.log("profile",this.state.profiles)
+    console.log("tmp",this.state.tmp)
     return (
         <div>
             <h5>Your Profiles</h5>
             <hr/>
-            <ul class="collection">
+            <ul className="collection">
                 {
-                    this.state.profiles.map((profile) => {return(
-                        <li class="collection-item avatar">
-                        <img src={profile['profilePicture']} alt="" class="circle"/>
-                        <span class="title">{profile['firstName']} {profile['lastName']}</span>
+                    this.state.profiles.map((profile) => {
+                        
+                        return(
+                        
+                        <li className="collection-item avatar">
+                        <img src={profile['profilePicture']} alt="" className="circle"/>
+                        <span className="title">{profile['firstName']} {profile['lastName']}</span>
                         <p> {profile['heading']}
                         </p>
                         
