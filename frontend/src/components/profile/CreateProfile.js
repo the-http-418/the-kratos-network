@@ -5,10 +5,16 @@ import ExperienceForm from '../elements/Experience'
 import HardSkillsForm from '../elements/HardSkills'
 import SoftSkillsForm from '../elements/SoftSkills'
 import M from 'materialize-css'
+
 export default class CreateProfile extends React.Component {
+    state = {
+      id : this.props.id ? this.props.id : '' 
+    }
     componentDidMount() {
         M.Tabs.init(this.Tabs);
+        this.instance = M.Tabs.getInstance(this.Tabs)
       }
+      
       render() {
         console.log("in create profile ..",this.props.profile)
         return (
@@ -38,19 +44,19 @@ export default class CreateProfile extends React.Component {
             </ul>
     
             <div id="test-swipe-1">
-              <BasicInfoForm edit={this.props.edit} profile={this.props.profile}/>
+              <BasicInfoForm id = {this.state.id} next={(id)=>{this.setState({id:id});this.instance.select('test-swipe-2')}} edit={this.props.edit} profile={this.props.profile}/>
             </div>
             <div id="test-swipe-2" >
-              <EducationForm edit={this.props.edit} profile={this.props.profile}/>
+              <EducationForm id = {this.state.id} edit={this.props.edit} next={(id)=>{this.setState({id:id});this.instance.select('test-swipe-3')}} profile={this.props.profile}/>
             </div>
             <div id="test-swipe-3" >
-              <ExperienceForm edit={this.props.edit} profile={this.props.profile}/>
+              <ExperienceForm id = {this.state.id} edit={this.props.edit} next={(id)=>{this.setState({id:id});this.instance.select('test-swipe-4')}} profile={this.props.profile}/>
             </div>
             <div id="test-swipe-4" >
-              <HardSkillsForm edit={this.props.edit} profile={this.props.profile}/>
+              <HardSkillsForm id = {this.state.id} edit={this.props.edit} next={(id)=>{this.setState({id:id});this.instance.select('test-swipe-5')}} profile={this.props.profile}/>
             </div>
             <div id="test-swipe-5" >
-              <SoftSkillsForm edit={this.props.edit} profile={this.props.profile}/>
+              <SoftSkillsForm  id = {this.state.id} edit={this.props.edit} profile={this.props.profile}/>
             </div>
           </>
         );

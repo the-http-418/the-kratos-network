@@ -1,7 +1,10 @@
 import React from 'react'
 import CreateProfile from './CreateProfile'
+import Fireapp from '../../config/firebaseConfig'
+
 class EditProfile extends React.Component{
     state = {
+        id:this.props.match.params.id,
         profile:{
             'bio':{
                 'profilePicture' : null,
@@ -13,36 +16,36 @@ class EditProfile extends React.Component{
             },
             'education':[],
             'workExperience':[]
-        }
+        },
+        ready:false
     }
     componentWillMount(){
         //firebase auth to get profile
-        const profile= {
-            'bio':{
-                'profilePicture' : '/img/default_dp.jpg',
-                'firstName' : 'PAtrick',
-                'lastName' : 'Rashidi',
-                'header' : 'Zaio Dev',
-                'designation' : 'Full stack developer and automation',
-                'links' : ['youtube.com','github.com'],
-                },
-            'education':[{"collegeName":"Harvard","stream":"Computer science and engineering","accolade":"Graduated with diploma"}],
-            'workExperience':
-                [{"companyName":"Aerobotics","role":"Devops Intern","startDate":"December 2019","endDate":"Present","description":"Build and align aerial imagery taken with drones and troubleshoot where automated processing failed. Also Trac image processing jobs using the web based platform and SQL."},]
-        }
+        const db = Fireapp.firestore()
+        const x =  db.collection('profiles').doc(this.state.id)
+        x.get().then((profile)=>{
         this.setState({
-            profile : profile
+            profile : profile.data(),
+            ready:true
         })
-        
+    })
     }
 
     render(){
-        console.log("in edit profile ..",this.state.profile)
+
+        console.log("in edit profile ..",this.state)
+        if(this.state.ready){
         return(
         <div>
-            <CreateProfile edit = {true} profile={this.state.profile} />
-        </div>
-    )
+            <CreateProfile id = {this.state.id} edit = {true} profile={this.state.profile} />
+        </div>)
+        }
+        else{
+            return(
+                <h5>Loading...</h5>
+            )
+        }
+    
     }
 }
 export default EditProfile

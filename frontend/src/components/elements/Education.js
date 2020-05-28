@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import Fireapp from '../../config/firebaseConfig'
 
+const email = Fireapp.auth().currentUser
 
 class EducationForm extends Component {
     state = {
@@ -19,7 +20,40 @@ class EducationForm extends Component {
     handleSubmit = (e) =>{
         e.preventDefault();
         console.log(this.state)
+        console.log("EHRERERRE")
         //firebase save
+        const db = Fireapp.firestore()
+        const ref = db.collection('profiles');
+        const education = this.state.education
+
+        if(this.props.id == ''){
+        ref.add({
+            email:email,
+            education:education
+        })
+        .then(
+            (docRef) => {
+                this.props.next(docRef.id)
+            }
+        )
+        .catch((error)=>{
+            console.log("Some error occured")
+        })
+        }
+        else{
+            ref.doc(this.props.id).update({
+                email:email,
+                education:education
+            })
+            .then(
+                this.props.next(this.props.id)
+            )
+            .catch((error)=>{
+                console.log(
+                    'Some error occured'
+                )
+            })
+        }
     }
 
     handleRemove =(idx,e) =>{
@@ -98,12 +132,12 @@ class EducationForm extends Component {
                         }) 
                     }
                     
-                    <button className="btn pink lighten-1 z-depth-0" onClick={this.addEducation}>
+                    <button type="button" className="btn pink lighten-1 z-depth-0" onClick={this.addEducation}>
                         Add Education
                     </button>
 
                     <div className="input-field">
-                        <button className="btn pink lighten-1 z-depth-0">
+                        <button type="button" className="btn pink lighten-1 z-depth-0" onClick = {this.handleSubmit} >
                             Save and Next
                         </button>
                     </div>
@@ -117,15 +151,10 @@ class EducationForm extends Component {
 
 
 class EducationList extends Component {
-    state={
-        education : [],
-        //{collegeName,stream,accolade}
-    }
-    componentDidMount(){
-        //firebase call
-        this.setState({
-            education:[{"collegeName":"Harvard","stream":"Computer science and engineering","accolade":"Graduated with diploma"}]
-        })
+    constructor(props){
+        super(props);
+        this.state = {education:this.props.education}
+        console.log("EDUCATION",this.state)
     }
     render() {
         return (

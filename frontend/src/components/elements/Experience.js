@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import Fireapp from '../../config/firebaseConfig'
 
 
+const email = Fireapp.auth().currentUser
 class ExperienceForm extends Component {
     state = {
         workExperience : [],
@@ -22,6 +23,38 @@ class ExperienceForm extends Component {
         e.preventDefault();
         console.log(this.state)
         //firebase save
+        const db = Fireapp.firestore()
+        const ref = db.collection('profiles');
+        const workExperience = this.state.workExperience
+
+        if(this.props.id == ''){
+        ref.add({
+            email:email,
+            workExperience:workExperience
+        })
+        .then(
+            (docRef) => {
+                this.props.next(docRef.id)
+            }
+        )
+        .catch((error)=>{
+            console.log("Some error occured")
+        })
+        }
+        else{
+            ref.doc(this.props.id).update({
+                email:email,
+                workExperience:workExperience
+            })
+            .then(
+                this.props.next(this.props.id)
+            )
+            .catch((error)=>{
+                console.log(
+                    'Some error occured'
+                )
+            })
+        }
     }
 
     handleRemove =(idx,e) =>{
@@ -151,12 +184,12 @@ class ExperienceForm extends Component {
                         }) 
                     }
                     
-                    <button className="btn pink lighten-1 z-depth-0" onClick={this.addExperience}>
+                    <button type="button" className="btn pink lighten-1 z-depth-0" onClick={this.addExperience}>
                         Add Education
                     </button>
 
                     <div className="input-field">
-                        <button className="btn pink lighten-1 z-depth-0">
+                        <button type="button" onClick= {this.handleSubmit} className="btn pink lighten-1 z-depth-0">
                             Save and Next
                         </button>
                     </div>
@@ -170,15 +203,10 @@ class ExperienceForm extends Component {
 
 
 class ExperienceList extends Component {
-    state={
-        workExperience : [],
-        //{companyName","role","startDate","endDate","description"}
-    }
-    componentDidMount(){
-        //firebase call
-        this.setState({
-            workExperience:[{"companyName":"Aerobotics","role":"Devops Intern","startDate":"December 2019","endDate":"Present","description":"Build and align aerial imagery taken with drones and troubleshoot where automated processing failed. Also Trac image processing jobs using the web based platform and SQL."},]
-        })
+    constructor(props){
+        super(props);
+        this.state = {workExperience:this.props.workExperience}
+        console.log("Exsssd ",this.state)
     }
     
     render() {
