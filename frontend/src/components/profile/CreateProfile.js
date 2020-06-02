@@ -56,7 +56,7 @@ export default class CreateProfile extends React.Component {
               <HardSkillsForm id = {this.state.id} edit={this.props.edit} next={(id)=>{this.setState({id:id});this.instance.select('test-swipe-5')}} profile={this.props.profile}/>
             </div>
             <div id="test-swipe-5" >
-              <SoftSkillsForm  id = {this.state.id} edit={this.props.edit} profile={this.props.profile}/>
+              <SoftSkillsForm  id = {this.state.id} edit={this.props.edit} profile={this.props.profile} next={(id)=>{this.setState({id:id});this.instance.select('test-swipe-5')}}/>
             </div>
           </>
         );

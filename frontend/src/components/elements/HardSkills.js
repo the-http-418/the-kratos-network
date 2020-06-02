@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import Fireapp from '../../config/firebaseConfig'
 
+const email = Fireapp.auth().currentUser
+
 class HardSkillsForm extends Component {
     state = {
         hardSkills : [],
@@ -21,6 +23,38 @@ class HardSkillsForm extends Component {
         e.preventDefault();
         console.log(this.state)
         //firebase save
+
+        const db = Fireapp.firestore()
+        const ref = db.collection('profiles');
+        const hardSkills = this.state.hardSkills
+
+        if(this.props.id == ''){
+        ref.add({
+            email:email,
+            hardSkills:hardSkills
+        })
+        .then(
+            (docRef) => {
+                this.props.next(docRef.id)
+            }
+        )
+        .catch((error)=>{
+            console.log("Some error occured")
+        })
+        }
+        else{
+            ref.doc(this.props.id).update({
+                hardSkills:hardSkills
+            })
+            .then(
+                this.props.next(this.props.id)
+            )
+            .catch((error)=>{
+                console.log(
+                    'Some error occured'
+                )
+            })
+        }
     }
 
     handleRemove =(idx,e) =>{
@@ -51,8 +85,6 @@ class HardSkillsForm extends Component {
 
             hardskills[idx]['endDate'] = x.value;
         }
-
-
 
         this.setState({
             hardSkills:hardskills
@@ -129,15 +161,11 @@ class HardSkillsForm extends Component {
 
 
 class HardSkillsList extends Component {
-    state={
-        hardSkills : [],
-        //{hardSkillName","proficiency","startDate","endDate","description"}
-    }
-    componentDidMount(){
-        //firebase call
-        this.setState({
-            hardSkills:[{"hardSkillName":"Aerobotics","proficiency":5},]
-        })
+    //TODO: SORT OUT THE TECH BASED ON FRONTEND BACKEND
+    constructor(props){
+        super(props);
+        this.state = {hardSkills:this.props.hardSkills}
+        console.log("Exsssd ",this.state)
     }
 
     render() {
@@ -147,6 +175,7 @@ class HardSkillsList extends Component {
                 <hr/>
                 <div className="container ouput-hardskills">
                     {
+                        
                         this.state.hardSkills.map((work)=>{
                             return(
                                 <HSkills
@@ -154,12 +183,13 @@ class HardSkillsList extends Component {
                                 proficiency={work['proficiency']}
                                 />
                             )
-                        })
+                       })
                     }
                 </div>
             </div>
         )
     }
+    
 }
 
 const HSkills = (props) =>{

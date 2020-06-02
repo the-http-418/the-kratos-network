@@ -64,6 +64,7 @@ class ExperienceForm extends Component {
             workExperience:education
         })     
     }
+
     addExperience = (e) => {
         const education = this.state.workExperience
         console.log("LINKS:",education)
@@ -72,6 +73,7 @@ class ExperienceForm extends Component {
         })
              
     }
+
     handleDateChange =(val,date,idx) =>{
         console.log("change.date")
         const education = [...this.state.workExperience]
@@ -83,6 +85,7 @@ class ExperienceForm extends Component {
         })
         console.log("STATE",this.state)
     }
+
     handleSliderChange = (e,idx) =>{
         var x = document.getElementsByClassName(`${idx}-endDate`)[0]
         const education = [...this.state.workExperience]
@@ -103,6 +106,7 @@ class ExperienceForm extends Component {
             workExperience:education
         })
     }
+
     componentDidMount(){
         if (this.props.edit){
             const education = this.props.profile['workExperience']
@@ -111,6 +115,7 @@ class ExperienceForm extends Component {
             })
         }
     }
+
     render() {
         return (
             <div className="container">

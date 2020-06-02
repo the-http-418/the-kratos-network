@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import Fireapp from '../../config/firebaseConfig'
 
+const email = Fireapp.auth().currentUser
 class SoftSkillsForm extends Component {
     state = {
         softSkills : [],
@@ -11,7 +12,7 @@ class SoftSkillsForm extends Component {
         const softskills = [...this.state.softSkills]
         const curr = softskills[idx]
         curr[e.target.id] = e.target.value;
-
+        softskills[idx] = curr;
         this.setState({
             softSkills:softskills
         })
@@ -21,6 +22,37 @@ class SoftSkillsForm extends Component {
         e.preventDefault();
         console.log(this.state)
         //firebase save
+        const db = Fireapp.firestore()
+        const ref = db.collection('profiles');
+        const softSkills = this.state.softSkills
+
+        if(this.props.id == ''){
+        ref.add({
+            email:email,
+            softSkills:softSkills
+        })
+        .then(
+            (docRef) => {
+                this.props.next(docRef.id)
+            }
+        )
+        .catch((error)=>{
+            console.log("Some error occured")
+        })
+        }
+        else{
+            ref.doc(this.props.id).update({
+                softSkills:softSkills
+            })
+            .then(
+                this.props.next(this.props.id)
+            )
+            .catch((error)=>{
+                console.log(
+                    'Some error occured'
+                )
+            })
+        }
     }
 
     handleRemove =(idx,e) =>{
@@ -34,29 +66,9 @@ class SoftSkillsForm extends Component {
         const softskills = this.state.softSkills
         console.log("LINKS:",softskills)
         this.setState({
-            softSkills:[...softskills,{"softSkillName":"","proficiency":"","startDate":"","endDate":"","description":""}]
+            softSkills:[...softskills,{"softSkillName":"","proficiency":""}]
         })
 
-    }
-    handleSliderChange = (e,idx) =>{
-        var x = document.getElementsByClassName(`${idx}-endDate`)[0]
-        const softskills = [...this.state.softSkills]
-
-        if (e.target.checked){
-            x.type = "hidden"
-
-            softskills[idx]['endDate'] = 'Present';}
-        else {
-            x.type = "month"
-
-            softskills[idx]['endDate'] = x.value;
-        }
-
-
-
-        this.setState({
-            softSkills:softskills
-        })
     }
     componentDidMount(){
         if (this.props.edit){
@@ -110,11 +122,11 @@ class SoftSkillsForm extends Component {
                         })
                     }
 
-                    <button className="btn pink lighten-1 z-depth-0" onClick={this.addSkill}>
+                    <button type = "button" className="btn pink lighten-1 z-depth-0" onClick={this.addSkill}>
                         Add Skill
                     </button>
 
-                    <div className="input-field">
+                    <div type = "button" className="input-field">
                         <button className="btn pink lighten-1 z-depth-0">
                             Save and Next
                         </button>
@@ -129,21 +141,18 @@ class SoftSkillsForm extends Component {
 
 
 class SoftSkillsList extends Component {
-    state={
-        softSkills : [],
-        //{softSkillName","proficiency","startDate","endDate","description"}
+    //TODO: SORT OUT THE TECH BASED ON FRONTEND BACKEND
+    constructor(props){
+        super(props);
+        this.state = {softSkills:this.props.softSkills}
+        console.log("Exsssd ",this.state)
     }
-    componentDidMount(){
-        //firebase call
-        this.setState({
-            softSkills:[{"softSkillName":"Aerobotics","proficiency":5},]
-        })
-    }
-
+    
     render() {
+        
         return (
             <div className="softskills profile-view">
-                <h5>HARD SKILLS</h5>
+                <h5>SOFT SKILLS</h5>
                 <hr/>
                 <div className="container ouput-softskills">
                     {
@@ -158,8 +167,9 @@ class SoftSkillsList extends Component {
                     }
                 </div>
             </div>
-        )
-    }
+        )}
+        
+    
 }
 
 const HSkills = (props) =>{
