@@ -1,14 +1,17 @@
 import React, { Component } from 'react'
 import M from 'materialize-css'
+
+
 export default class Topic extends Component {
-    constructor(){
-        super()
-        document.addEventListener('DOMContentLoaded', function() {
-            var elems = document.querySelectorAll('.dropdown-trigger');
-            var instances = M.Dropdown.init(elems);
-          });
+    
+    componentDidMount(){
+        var elems = document.querySelectorAll('.dropdown-trigger');
+        var instances = M.Dropdown.init(elems);
     }
     render() {
+        
+            
+          
         return (
             <div className = "topic-hah">
                 <div className = "topic-title">
