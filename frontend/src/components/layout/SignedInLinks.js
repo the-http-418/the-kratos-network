@@ -9,9 +9,10 @@ const handleLogout = async () =>{
 const SignedInLinks = () => {
     return(
         <ul className="right">
-            <li><NavLink to='/createprofile'>New Profile</NavLink></li>
+            <li><NavLink to='/createprofile'>Create Profile</NavLink></li>
             <li><NavLink to='/' onClick = {handleLogout}>Logout</NavLink></li>
             <li><NavLink to='/profiles'>Profiles</NavLink></li>
+            <li><NavLink to='/content'>Content</NavLink></li>
         </ul>
     )
 }

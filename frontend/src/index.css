@@ -1,5 +1,5 @@
 body{
-  padding:20px;
+  padding:0px;
 }
 
 div .workexp{
@@ -7,3 +7,37 @@ div .workexp{
   margin:5px;
   border:2px solid black;
 } 
+
+div .sidenav{
+  margin-top: 90px;
+  padding-top: 40px;
+}
+div .content-main{
+  margin-left: 300px;
+  max-width:100vh;
+}
+
+
+div .wrapper-sidenav{
+  height:100%;
+  width:270px;
+  position:fixed;
+  z-index:10;
+  overflow-x: hidden;
+  top:inherit;
+  display: inline-block;
+}
+
+.create-button{
+  border-radius:45px;
+  margin:10px;
+  
+}
+
+.avatar-item{
+  margin:10px
+}
+
+.topic-text{
+  padding-left:15px;
+}
