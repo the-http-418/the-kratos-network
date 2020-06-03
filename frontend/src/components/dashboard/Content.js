@@ -1,14 +1,20 @@
 import React, { Component } from 'react'
 import Sidenav from '../layout/Sidenav'
+import TopicList from '../content/TopicList'
+
 class Content extends Component {
-    constructor(){
-        super()
-        
-    }
+    
     render() {
         
         return (
-            <Sidenav/>
+            <div className="george wrapper">
+                
+                <Sidenav/>
+                
+                <div class = "content-main">
+                    <TopicList/>
+                </div>
+            </div>
         )
     }
 }

@@ -2,12 +2,11 @@ import React from 'react'
 
 export default function Sidenav() {
     return (
-        <div>
-            <ul id="slide-out" class="sidenav sidenav-fixed">
-            <li><a href="#!">Welcome!</a></li>
-            <li><a href="#!">Introduction</a></li>
-        </ul>
-   
+        <div class = "wrapper-sidenav purple darken-3">
+            <ul class="collection ">
+                <a class="collection-item ">Welcome</a>
+                <a class="collection-item">Introduction</a>
+            </ul>
         </div>
     )
 }
