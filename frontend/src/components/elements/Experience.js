@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import Fireapp from '../../config/firebaseConfig'
 
 
+const email = Fireapp.auth().currentUser
 class ExperienceForm extends Component {
     state = {
         workExperience : [],
@@ -22,6 +23,38 @@ class ExperienceForm extends Component {
         e.preventDefault();
         console.log(this.state)
         //firebase save
+        const db = Fireapp.firestore()
+        const ref = db.collection('profiles');
+        const workExperience = this.state.workExperience
+
+        if(this.props.id == ''){
+        ref.add({
+            email:email,
+            workExperience:workExperience
+        })
+        .then(
+            (docRef) => {
+                this.props.next(docRef.id)
+            }
+        )
+        .catch((error)=>{
+            console.log("Some error occured")
+        })
+        }
+        else{
+            ref.doc(this.props.id).update({
+                email:email,
+                workExperience:workExperience
+            })
+            .then(
+                this.props.next(this.props.id)
+            )
+            .catch((error)=>{
+                console.log(
+                    'Some error occured'
+                )
+            })
+        }
     }
 
     handleRemove =(idx,e) =>{
@@ -31,6 +64,7 @@ class ExperienceForm extends Component {
             workExperience:education
         })     
     }
+
     addExperience = (e) => {
         const education = this.state.workExperience
         console.log("LINKS:",education)
@@ -39,6 +73,7 @@ class ExperienceForm extends Component {
         })
              
     }
+
     handleDateChange =(val,date,idx) =>{
         console.log("change.date")
         const education = [...this.state.workExperience]
@@ -50,6 +85,7 @@ class ExperienceForm extends Component {
         })
         console.log("STATE",this.state)
     }
+
     handleSliderChange = (e,idx) =>{
         var x = document.getElementsByClassName(`${idx}-endDate`)[0]
         const education = [...this.state.workExperience]
@@ -70,6 +106,16 @@ class ExperienceForm extends Component {
             workExperience:education
         })
     }
+
+    componentDidMount(){
+        if (this.props.edit){
+            const education = this.props.profile['workExperience']
+            this.setState({
+                workExperience:education
+            })
+        }
+    }
+
     render() {
         return (
             <div className="container">
@@ -92,6 +138,7 @@ class ExperienceForm extends Component {
                                 <input
                                     type="text"
                                     id = 'companyName'
+                                    value={experience['companyName']}
                                     placeholder="Enter Company Name"
                                     list = "company-list"
                                     onChange={(e) => this.handleChange(idx,e)}
@@ -100,6 +147,7 @@ class ExperienceForm extends Component {
                                 <div className='input-field'>
                                 <input
                                     type="text"
+                                    value={experience['role']}
                                     id = 'role'
                                     placeholder="Enter your role"
                                     onChange={(e) => this.handleChange(idx,e)}
@@ -107,11 +155,11 @@ class ExperienceForm extends Component {
                                 
                                 <div className="input-field">
                                     Start date:
-                                    <input type="month" id="startDate" onChange={(e) => this.handleChange(idx,e)}/>
+                                    <input type="month" value={experience['startDate']} id="startDate" onChange={(e) => this.handleChange(idx,e)}/>
                                 </div>
                                 <div className="input-field">
                                     End date:
-                                    <input type="month" id="endDate" className = {`${idx}-endDate`}  onChange={(e) => this.handleChange(idx,e)}/>
+                                    <input type="month" value={experience['endDate']} id="endDate" className = {`${idx}-endDate`}  onChange={(e) => this.handleChange(idx,e)}/>
                             
                                 </div>
                                 <div className='input-field'>
@@ -128,6 +176,7 @@ class ExperienceForm extends Component {
                                     type="text"
                                     id = 'description'
                                     placeholder="Enter description"
+                                    value={experience['description']}
                                     onChange={(e) => this.handleChange(idx,e)}
                                 /></div>
                                 <button type="button" onClick={() => this.handleRemove(idx)}>
@@ -140,12 +189,12 @@ class ExperienceForm extends Component {
                         }) 
                     }
                     
-                    <button className="btn pink lighten-1 z-depth-0" onClick={this.addExperience}>
+                    <button type="button" className="btn pink lighten-1 z-depth-0" onClick={this.addExperience}>
                         Add Education
                     </button>
 
                     <div className="input-field">
-                        <button className="btn pink lighten-1 z-depth-0">
+                        <button type="button" onClick= {this.handleSubmit} className="btn pink lighten-1 z-depth-0">
                             Save and Next
                         </button>
                     </div>
@@ -159,16 +208,12 @@ class ExperienceForm extends Component {
 
 
 class ExperienceList extends Component {
-    state={
-        workExperience : [],
-        //{companyName","role","startDate","endDate","description"}
+    constructor(props){
+        super(props);
+        this.state = {workExperience:this.props.workExperience}
+        console.log("Exsssd ",this.state)
     }
-    componentDidMount(){
-        //firebase call
-        this.setState({
-            workExperience:[{"companyName":"Aerobotics","role":"Devops Intern","startDate":"December 2019","endDate":"Present","description":"Build and align aerial imagery taken with drones and troubleshoot where automated processing failed. Also Trac image processing jobs using the web based platform and SQL."},]
-        })
-    }
+    
     render() {
         return (
             <div className="experience profile-view">

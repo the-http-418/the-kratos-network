@@ -2,7 +2,7 @@ import React from 'react';
 import {BrowserRouter,Switch,Route} from 'react-router-dom';
 import SignIn from './components/auth/SignIn'
 import SignUp from './components/auth/SignUp'
-
+import Content from './components/dashboard/Content'
 import LandingPage from './components/pages/LandingPage'
 import Dashboard from './components/dashboard/Dashboard'
 import Navbar from './components/layout/Navbar'
@@ -29,6 +29,7 @@ function App() {
         <Route path='/profile/:name/:id' component = {PublicViewProfile}/>
         <Route path='/editprofile/:name/:id' component = {EditProfile}/>
         <Route path='/generatedProfile/:name/:id' component = {PreviewProfileView}/>
+        <Route path='/content' component = {Content}/>
       </Switch>
     </div>
     </BrowserRouter>

@@ -27,12 +27,14 @@ class Navbar extends Component {
     render(){
     console.log("from heret",this.state.links)
     return (
-        <nav className="nav-wrapper purple darken-3">
+        <div className="navbar-fixed">
+        <nav className="nav-wrapper purple darken-3 ">
             <div className="container">
                 <Link to = '/dashboard' className="brand-logo">Kratos Network</Link>
                 { this.state.links }
             </div>
         </nav>
+        </div>
     )}
 }
 export default Navbar
