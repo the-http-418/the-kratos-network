@@ -3,8 +3,15 @@ import {Link} from 'react-router-dom'
 export default function LandingPage() {
     return (
         <div>
-            this is your landing page.<br/><hr/>
-            your routes:<br></br><hr/>
+            <h3>Welcome to The Kratos Network!</h3>
+            <Link to ='/signin'>
+              <div className="btn pink white-text">
+                Sign in
+              </div>
+            </Link>
+            <hr/>
+            <hr/>
+            Current Routes:<br></br>
             / - landing page<br/>
             /signin - signin page<br/>
             /signup - signup page (maybe not needed)<br/>
@@ -13,11 +20,6 @@ export default function LandingPage() {
             /profile/:name/:id - to view the profile (public link anyone can access)<br/>
             /editprofile/:name/:id - to edit a profile<br/>
             /generatedProfile/:name/:id - profile preview area<br/>
-            <Link to ='/signin'>
-                <div className="btn pink white-text">
-                    Sign in
-                </div>
-            </Link>            
         </div>
     )
 }

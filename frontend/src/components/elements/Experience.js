@@ -13,7 +13,7 @@ class ExperienceForm extends Component {
         const education = [...this.state.workExperience]
         const curr = education[idx]
         curr[e.target.id] = e.target.value;
-        
+
         this.setState({
             workExperience:education
         })
@@ -27,7 +27,7 @@ class ExperienceForm extends Component {
         const ref = db.collection('profiles');
         const workExperience = this.state.workExperience
 
-        if(this.props.id == ''){
+        if(this.props.id === ''){
         ref.add({
             email:email,
             workExperience:workExperience
@@ -59,10 +59,10 @@ class ExperienceForm extends Component {
 
     handleRemove =(idx,e) =>{
         const education = [...this.state.workExperience];
-        education.splice(idx,1)   
+        education.splice(idx,1)
         this.setState({
             workExperience:education
-        })     
+        })
     }
 
     addExperience = (e) => {
@@ -71,7 +71,7 @@ class ExperienceForm extends Component {
         this.setState({
             workExperience:[...education,{"companyName":"","role":"","startDate":"","endDate":"","description":""}]
         })
-             
+
     }
 
     handleDateChange =(val,date,idx) =>{
@@ -79,7 +79,7 @@ class ExperienceForm extends Component {
         const education = [...this.state.workExperience]
         const curr = education[idx]
         curr[val] = date;
-        
+
         this.setState({
             workExperience:education
         })
@@ -89,19 +89,19 @@ class ExperienceForm extends Component {
     handleSliderChange = (e,idx) =>{
         var x = document.getElementsByClassName(`${idx}-endDate`)[0]
         const education = [...this.state.workExperience]
-        
+
         if (e.target.checked){
             x.type = "hidden"
-            
-            education[idx]['endDate'] = 'Present';} 
-        else {  
+
+            education[idx]['endDate'] = 'Present';}
+        else {
             x.type = "month"
-            
+
             education[idx]['endDate'] = x.value;
         }
-        
-        
-        
+
+
+
         this.setState({
             workExperience:education
         })
@@ -125,7 +125,7 @@ class ExperienceForm extends Component {
                     </h5>
                     <hr/>
                     {
-                        
+
                         this.state.workExperience.map((experience,idx)=>{
                             return(
                             <div className="container workexp">
@@ -152,7 +152,7 @@ class ExperienceForm extends Component {
                                     placeholder="Enter your role"
                                     onChange={(e) => this.handleChange(idx,e)}
                                 /></div>
-                                
+
                                 <div className="input-field">
                                     Start date:
                                     <input type="month" value={experience['startDate']} id="startDate" onChange={(e) => this.handleChange(idx,e)}/>
@@ -160,7 +160,7 @@ class ExperienceForm extends Component {
                                 <div className="input-field">
                                     End date:
                                     <input type="month" value={experience['endDate']} id="endDate" className = {`${idx}-endDate`}  onChange={(e) => this.handleChange(idx,e)}/>
-                            
+
                                 </div>
                                 <div className='input-field'>
                                 <div class="switch">
@@ -182,13 +182,13 @@ class ExperienceForm extends Component {
                                 <button type="button" onClick={() => this.handleRemove(idx)}>
                                 X
                                 </button>
-                                
+
                             </div>
-                        
+
                         )
-                        }) 
+                        })
                     }
-                    
+
                     <button type="button" className="btn pink lighten-1 z-depth-0" onClick={this.addExperience}>
                         Add Education
                     </button>
@@ -198,7 +198,7 @@ class ExperienceForm extends Component {
                             Save and Next
                         </button>
                     </div>
-                    
+
                 </form>
             </div>
         )
@@ -213,7 +213,7 @@ class ExperienceList extends Component {
         this.state = {workExperience:this.props.workExperience}
         console.log("Exsssd ",this.state)
     }
-    
+
     render() {
         return (
             <div className="experience profile-view">
@@ -223,7 +223,7 @@ class ExperienceList extends Component {
                     {
                         this.state.workExperience.map((work)=>{
                             return(
-                                <Work 
+                                <Work
                                 companyName={work['companyName']}
                                 role={work['role']}
                                 startDate={work['startDate']}
