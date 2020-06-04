@@ -26,7 +26,7 @@ class SoftSkillsForm extends Component {
         const ref = db.collection('profiles');
         const softSkills = this.state.softSkills
 
-        if(this.props.id == ''){
+        if(this.props.id === ''){
         ref.add({
             email:email,
             softSkills:softSkills
@@ -147,9 +147,9 @@ class SoftSkillsList extends Component {
         this.state = {softSkills:this.props.softSkills}
         console.log("Exsssd ",this.state)
     }
-    
+
     render() {
-        
+
         return (
             <div className="softskills profile-view">
                 <h5>SOFT SKILLS</h5>
@@ -168,8 +168,8 @@ class SoftSkillsList extends Component {
                 </div>
             </div>
         )}
-        
-    
+
+
 }
 
 const HSkills = (props) =>{

@@ -7,7 +7,7 @@ class EducationForm extends Component {
     state = {
         education : [],
     }
-    
+
     handleChange = (idx,e) => {
         const education = [...this.state.education]
         const curr = education[idx]
@@ -26,7 +26,7 @@ class EducationForm extends Component {
         const ref = db.collection('profiles');
         const education = this.state.education
 
-        if(this.props.id == ''){
+        if(this.props.id === ''){
         ref.add({
             email:email,
             education:education
@@ -58,10 +58,10 @@ class EducationForm extends Component {
 
     handleRemove =(idx,e) =>{
         const education = [...this.state.education];
-        education.splice(idx,1)   
+        education.splice(idx,1)
         this.setState({
             education:education
-        })     
+        })
     }
 
     addEducation = (e) => {
@@ -80,14 +80,14 @@ class EducationForm extends Component {
         }
     }
     render() {
-        
+
         return (
             <div className="container">
                 <form onSubmit ={this.handleSubmit} className = "white">
                     <h5 className="grey-text text-darken-3">
                         Educational history
                     </h5>
-                    
+
                    <hr/>
                     {
                         this.state.education.map((school,idx)=>{return(
@@ -97,9 +97,9 @@ class EducationForm extends Component {
                                     <option value="UCLA"/>
                                     <option value="MIT"/>
                                 </datalist>
-                                
-                        
-        
+
+
+
                                 <input
                                     type="text"
                                     id = 'collegeName'
@@ -125,13 +125,13 @@ class EducationForm extends Component {
                                 <button type="button" onClick={() => this.handleRemove(idx)}>
                                 X
                                 </button>
-                                
+
                             </div>
-                            
+
                         )
-                        }) 
+                        })
                     }
-                    
+
                     <button type="button" className="btn pink lighten-1 z-depth-0" onClick={this.addEducation}>
                         Add Education
                     </button>
@@ -141,7 +141,7 @@ class EducationForm extends Component {
                             Save and Next
                         </button>
                     </div>
-                    
+
                 </form>
             </div>
         )
@@ -165,7 +165,7 @@ class EducationList extends Component {
                     {
                         this.state.education.map((school,idx)=>{
                             return(
-                                <School 
+                                <School
                                     collegeName = {this.state.education[idx]['collegeName']}
                                     stream = {this.state.education[idx]['stream']}
                                     accolade = {this.state.education[idx]['accolade']}
