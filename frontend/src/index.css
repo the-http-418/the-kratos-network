@@ -52,7 +52,16 @@ div .wrapper-sidenav{
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2),0 6px 20px 0 rgba(0, 0, 0, 0.19);
   
 }
+.update-video{
+  padding:60px;
+}
 
+.wrapper-update-video{
+  padding:20px;
+  border:2px solid rgb(99, 15, 121);
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2),0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  
+}
 
 .input-field input[type=text]:focus + label {
   color: rgb(99, 15, 121) !important;
@@ -64,6 +73,7 @@ div .wrapper-sidenav{
 }
 .input-field textarea:focus + label {
   color: rgb(99, 15, 121) !important;
+  background-color: rgb(250, 249, 249);
 }
 .input-field textarea:focus {
   background-color: rgb(250, 249, 249);
@@ -74,4 +84,60 @@ div .wrapper-sidenav{
 .action-button{
   margin:6px;
   border-radius:20px;
+}
+.video-input-field{
+  background-color:rgb(250, 249, 249);
+}
+
+.video-area{
+  width:250px;
+  height: 200px;
+  background-color:rgb(240, 232, 237);
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2),0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  
+}
+.align-center-text{
+  text-align: center;
+  padding-top: 15%;
+} 
+
+.container .progressbar-container {
+  position: relative ;
+  background-color: rgb(240, 232, 237);;
+  width: 100%;
+  height: 50px;
+  border: 1px solid rgb(99, 15, 121);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+.container .progressbar-container .progressbar-complete {
+  position: absolute;
+  left: 0;
+  top: 0px;
+  height: 100%;
+  background-color: rgb(99, 15, 121);
+  border-radius: 10px;
+  animation: g 2500ms infinite ease-in-out;
+  z-index: 2;
+}
+.container .progressbar-container .progress-content {
+  color:rgb(167, 164, 164);
+  font-weight: bold;
+  z-index: 2;
+}
+
+
+@keyframes g {
+  0% {
+    background-color: rgb(99, 15, 121);
+  }
+  50% {
+    background-color: #720563;
+  }
+  100% {
+    background-color: rgb(99, 15, 121);
+  }
 }

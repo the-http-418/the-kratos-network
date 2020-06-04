@@ -27,8 +27,8 @@ export default class UpdateTopic extends Component {
                     </div>
                 </form>
                 <div class = "action-buttons">
-                    <a class="waves-effect waves-light btn action-button purple darken-3"><i class="material-icons left">add</i>Add</a>
-                    <a class="waves-effect waves-light btn action-button purple darken-3"><i class="material-icons right">attach_file</i>Create</a>
+                    <a class="waves-effect waves-light btn action-button purple darken-3"><i class="material-icons left">attach_file</i>Video</a>
+                    <a class="waves-effect waves-light btn action-button purple darken-3"><i class="material-icons left">add</i>Deliverable</a>
                 </div>
 
                
