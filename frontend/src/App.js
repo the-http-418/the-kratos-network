@@ -13,6 +13,7 @@ import PublicViewProfile from './components/profile/PublicViewProfile'
 import Fireapp from './config/firebaseConfig'
 import UpdateTopic from './components/content/UpdateTopic'
 import UpdateDeliverable from './components/content/UpdateDeliverable'
+import UpdateVideo from './components/content/UpdateVideo'
 
 function App() {
   const auth = Fireapp.auth().currentUser
@@ -32,7 +33,11 @@ function App() {
         <Route path='/generatedProfile/:name/:id' component = {PreviewProfileView}/>
         <Route path='/content' component = {Content}/>
         <Route path='/topic/:id' component = {UpdateTopic}/>
+
         <Route path='/deliverable/:id' component = {UpdateDeliverable}/>
+
+        <Route path='/video/:id' component = {UpdateVideo}/>
+
       </Switch>
     </div>
     </BrowserRouter>
