@@ -11,7 +11,7 @@ import CreateProfile from './components/profile/CreateProfile'
 import PreviewProfileView from './components/profile/PreviewProfileView'
 import PublicViewProfile from './components/profile/PublicViewProfile'
 import Fireapp from './config/firebaseConfig'
-
+import UpdateTopic from './components/content/UpdateTopic'
 
 function App() {
   const auth = Fireapp.auth().currentUser
@@ -30,6 +30,7 @@ function App() {
         <Route path='/editprofile/:name/:id' component = {EditProfile}/>
         <Route path='/generatedProfile/:name/:id' component = {PreviewProfileView}/>
         <Route path='/content' component = {Content}/>
+        <Route path='/topic/:id' component = {UpdateTopic}/>
       </Switch>
     </div>
     </BrowserRouter>

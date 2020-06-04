@@ -41,3 +41,37 @@ div .wrapper-sidenav{
 .topic-text{
   padding-left:15px;
 }
+
+.update-topic{
+  padding:60px;
+}
+
+.wrapper-update-topic{
+  padding:20px;
+  border:2px solid rgb(99, 15, 121);
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2),0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  
+}
+
+
+.input-field input[type=text]:focus + label {
+  color: rgb(99, 15, 121) !important;
+}
+.input-field input[type=text]:focus {
+  background-color: rgb(250, 249, 249);
+  border-bottom: 1px solid rgb(99, 15, 121) !important;
+  box-shadow: 0 1px 0 0 rgb(99, 15, 121) !important;
+}
+.input-field textarea:focus + label {
+  color: rgb(99, 15, 121) !important;
+}
+.input-field textarea:focus {
+  background-color: rgb(250, 249, 249);
+  border-bottom: 1px solid rgb(99, 15, 121) !important;
+  box-shadow: 0 1px 0 0 rgb(99, 15, 121) !important;
+}
+
+.action-button{
+  margin:6px;
+  border-radius:20px;
+}
