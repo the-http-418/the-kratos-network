@@ -82,12 +82,13 @@ div .wrapper-sidenav{
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2),0 6px 20px 0 rgba(0, 0, 0, 0.19);
   float:right;
   width:24.5%;
+}
 
 .wrapper-update-video{
   padding:20px;
   border:2px solid rgb(99, 15, 121);
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2),0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  
+
 
 }
 
@@ -112,6 +113,7 @@ div .wrapper-sidenav{
 .action-button{
   margin:6px;
   border-radius:20px;
+}
 
 .video-input-field{
   background-color:rgb(250, 249, 249);
@@ -122,12 +124,12 @@ div .wrapper-sidenav{
   height: 200px;
   background-color:rgb(240, 232, 237);
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2),0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  
+
 }
 .align-center-text{
   text-align: center;
   padding-top: 15%;
-} 
+}
 
 .container .progressbar-container {
   position: relative ;
@@ -169,4 +171,3 @@ div .wrapper-sidenav{
     background-color: rgb(99, 15, 121);
   }
 }
-
