@@ -6,7 +6,7 @@ div .workexp{
   padding:10px;
   margin:5px;
   border:2px solid black;
-} 
+}
 
 div .sidenav{
   margin-top: 90px;
@@ -31,7 +31,7 @@ div .wrapper-sidenav{
 .create-button{
   border-radius:45px;
   margin:10px;
-  
+
 }
 
 .avatar-item{
@@ -50,9 +50,35 @@ div .wrapper-sidenav{
   padding:20px;
   border:2px solid rgb(99, 15, 121);
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2),0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  
+
 }
 
+.update-deliverable{
+  padding:60px;
+}
+
+.wrapper-update-deliverable{
+  padding:20px;
+  border:2px solid rgb(99, 15, 121);
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2),0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
+}
+
+.wrapper-update-deliverable-text{
+  padding:20px;
+  border:2px solid rgb(99, 15, 121);
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2),0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  float:left;
+  width:74.5%;
+}
+
+.wrapper-update-deliverable-num{
+  padding:20px;
+  border:2px solid rgb(99, 15, 121);
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2),0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  float:right;
+  width:24.5%;
+}
 
 .input-field input[type=text]:focus + label {
   color: rgb(99, 15, 121) !important;
