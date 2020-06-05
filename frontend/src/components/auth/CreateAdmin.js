@@ -24,7 +24,7 @@ class CreateAdmin extends Component {
           .then(
               (user) => {
                 alert("Sucessfully Created Admin!");
-                  this.props.history.push('/');
+                  this.props.history.push('/createadmin');
               }
           )
           .catch(

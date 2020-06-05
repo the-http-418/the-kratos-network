@@ -8,6 +8,7 @@ import Content from './components/dashboard/Content'
 import LandingPage from './components/pages/LandingPage'
 import Dashboard from './components/dashboard/Dashboard'
 import Navbar from './components/layout/Navbar'
+import Footer from './components/layout/Footer'
 import EditProfile from './components/profile/EditProfile'
 import CreateProfile from './components/profile/CreateProfile'
 import PreviewProfileView from './components/profile/PreviewProfileView'
@@ -24,6 +25,7 @@ function App() {
     <BrowserRouter>
     <div className="App">
       <Navbar/>
+      <Footer/>
       <Switch>
         <Route exact path='/' component = {LandingPage}/>
         <Route path='/signin' component = {SignIn}/>

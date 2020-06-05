@@ -88,8 +88,20 @@ div .wrapper-sidenav{
   padding:20px;
   border:2px solid rgb(99, 15, 121);
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2),0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
 
+.loginstuff{
+  text-align:center;
+}
 
+.footer {
+  position: fixed;
+  left: 0;
+  bottom: 0.5%;
+  width: 100%;
+  background-color: white;
+  color: purple;
+  text-align: center;
 }
 
 .input-field input[type=text]:focus + label {
