@@ -1,11 +1,14 @@
 import React from 'react';
 import {BrowserRouter,Switch,Route} from 'react-router-dom';
 import SignIn from './components/auth/SignIn'
+import SuperAdminSignIn from './components/auth/SuperAdminSignIn'
+import CreateAdmin from './components/auth/CreateAdmin'
 import SignUp from './components/auth/SignUp'
 import Content from './components/dashboard/Content'
 import LandingPage from './components/pages/LandingPage'
 import Dashboard from './components/dashboard/Dashboard'
 import Navbar from './components/layout/Navbar'
+import Footer from './components/layout/Footer'
 import EditProfile from './components/profile/EditProfile'
 import CreateProfile from './components/profile/CreateProfile'
 import PreviewProfileView from './components/profile/PreviewProfileView'
@@ -22,6 +25,7 @@ function App() {
     <BrowserRouter>
     <div className="App">
       <Navbar/>
+      <Footer/>
       <Switch>
         <Route exact path='/' component = {LandingPage}/>
         <Route path='/signin' component = {SignIn}/>
@@ -31,12 +35,12 @@ function App() {
         <Route path='/profile/:name/:id' component = {PublicViewProfile}/>
         <Route path='/editprofile/:name/:id' component = {EditProfile}/>
         <Route path='/generatedProfile/:name/:id' component = {PreviewProfileView}/>
-        <Route exact path='/content' component = {Content}/>
-        <Route exact path='/topic/:id' component = {UpdateTopic}/>
-
-        <Route exact path='/deliverable/:id' component = {UpdateDeliverable}/>
-
-        <Route exact path='/video/:id' component = {UpdateVideo}/>
+        <Route path='/content' component = {Content}/>
+        <Route path='/topic/:id' component = {UpdateTopic}/>
+        <Route path='/deliverable/:id' component = {UpdateDeliverable}/>
+        <Route path='/video/:id' component = {UpdateVideo}/>
+        <Route path='/superadminsignin' component = {SuperAdminSignIn}/>
+        <Route path='/createadmin' component = {CreateAdmin}/>
 
       </Switch>
     </div>
