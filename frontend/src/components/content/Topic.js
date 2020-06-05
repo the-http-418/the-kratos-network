@@ -14,6 +14,10 @@ export default class Topic extends Component {
     componentDidMount(){
         var elems = document.querySelectorAll('.dropdown-trigger');
         var instances = M.Dropdown.init(elems);
+        
+        elems = document.querySelectorAll('.modal');
+        instances = M.Modal.init(elems);
+        
     }
     render() {  
         return (
@@ -27,9 +31,17 @@ export default class Topic extends Component {
                     
                     <ul id={`dropdown-${this.state.id}`} className='dropdown-content'>
                         <li><a href={`/topic/${this.state.id}`} className='purple-text'>edit<span> <i className="material-icons secondary-content tiny purple-text">edit</i></span></a></li>
-                        <li><a href="#" onClick = {()=>this.props.delete(this.state.id)} className='purple-text'>delete<span><i className="material-icons secondary-content tiny purple-text">delete</i></span></a></li>
+                        <li><a href={`#modal1-${this.state.id}`} className='modal-trigger purple-text'>delete<span><i className="material-icons secondary-content tiny purple-text">delete</i></span></a></li>
                     </ul>    
-                    
+                    <div id={`modal1-${this.state.id}`} className="modal">
+                        <div class="modal-content">
+                        <h4>Are you sure to delete {this.props.title}?</h4>
+                        <p>You will not be able to revert this action</p>
+                        </div>
+                        <div class="modal-footer">
+                        <a href="#" onClick ={() => this.props.delete(this.state.id)} class="modal-close waves-effect waves-green btn-flat">Delete</a>
+                        </div>
+                    </div>
                 </div>
                     <div className = "divider purple darken-3" />
                 </div>

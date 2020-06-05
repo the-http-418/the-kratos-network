@@ -175,21 +175,36 @@ export default class UpdateTopic extends Component {
         }
     }
 }
-const ContentListItem = (props) => {
-    console.log(props)
+class ContentListItem extends Component{
+    componentDidMount(){
+    
+            var elems = document.querySelectorAll('.modal');
+            var instances = M.Modal.init(elems);
+        
+    }
+    render(){
     return (
         
         <li className="collection-item avatar thiscollection">
             
             {
-                (props.type == "video")?<i className="avatar-item material-icons circle purple">book</i>
+                (this.props.type == "video")?<i className="avatar-item material-icons circle purple">book</i>
                                        :<i className ="avatar-item material-icons circle purple">assignment</i>
             }
             <br/>
         
-            <p className="flow-text topic-text"><a className="purple-text" href={`/${props.type}/${props.id}`}>{props.name}</a></p>
-            <a href = "#" onClick ={() => props.delete(props.id,props.type)}><i class="material-icons purple-text secondary-content">close</i></a>
+            <p className="flow-text topic-text"><a className="purple-text" href={`/${this.props.type}/${this.props.id}`}>{this.props.name}</a></p>
+            <a href = {`#modal1-${this.props.id}`} className = "modal-trigger"><i class="material-icons purple-text secondary-content">close</i></a>
+            <div id={`modal1-${this.props.id}`} className="modal">
+                <div class="modal-content">
+                <h4>Are you sure to delete {this.props.name}?</h4>
+                <p>You will not be able to revert this action</p>
+                </div>
+                <div class="modal-footer">
+                <a href="#" onClick ={() => this.props.delete(this.props.id,this.props.type)} class="modal-close waves-effect waves-green btn-flat">Delete</a>
+                </div>
+            </div>
         </li>
         
-    )
+    )}
 }
