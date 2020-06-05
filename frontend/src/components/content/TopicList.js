@@ -7,8 +7,8 @@ import {Preloader} from '../utlis/Preloader'
 class TopicList extends Component {
     state = {
         redirect : null,
-        loading : true,
-        topics : [],
+        loading : false,
+        topics : this.props.topics,
     }
     createTopic = () => {
         const db = Fireapp.firestore()
@@ -33,28 +33,7 @@ class TopicList extends Component {
         })
         
     }
-    componentDidMount(){
-        const db = Fireapp.firestore()
-        var topics = []
-        var count = 0;
-        db.collection("topics").get().then(
-            (document) => {
-                 document.forEach(
-                (doc)=>{
-                     //check for user   
-                     var x = doc.data()
-                     x['id'] = doc.id
-                     topics.push(x);
-                })
-            
-            this.setState({
-                topics:topics,
-                loading:false
-            });
-            }
-        )
-         
-    }
+    
     deleteTopic = (id) => {
         const db = Fireapp.firestore()
         var topics = this.state.topics

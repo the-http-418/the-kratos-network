@@ -1,12 +1,23 @@
-import React from 'react'
+import React,{Component} from 'react'
 
-export default function Sidenav() {
+class Sidenav extends Component {
+    render(){
     return (
         <div class = "wrapper-sidenav purple darken-3">
+            <p className="flow-text white-text center">Your Content</p>
             <ul class="collection ">
-                <a class="collection-item ">Welcome</a>
-                <a class="collection-item">Introduction</a>
+                
+                {
+                    this.props.topics.map((topic)=>{
+                        return(
+                            <li className = "white-text purple darken-3 collection-item">{topic.title}</li>
+                        )
+                    })
+                }
             </ul>
         </div>
     )
 }
+}
+
+export default Sidenav
