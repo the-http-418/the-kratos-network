@@ -4,10 +4,10 @@ import Fireapp from '../../config/firebaseConfig'
 class ProfileList extends Component {
     state = {
         profiles : [],
-        
+
     }
     componentDidMount(){
-        
+
         const db = Fireapp.firestore()
         const profiles = []
         const col = db.collection("profiles")
@@ -24,42 +24,41 @@ class ProfileList extends Component {
             })
         }
         )
-        
+
         /*const bio = []
         for(var i=0;i<tmp.length;i++){
             const x = tmp[i]['data']['bio']
             x['id'] = tmp[i]['id']
             bio.push(x)
         }*/
-        
-        
+
+
     }
 
     render(){
     console.log("profile",this.state.profiles)
     console.log("tmp",this.state.tmp)
     return (
-        <div>
+        <div class='profile-list'>
             <h5>Your Profiles</h5>
             <hr/>
             <ul className="collection">
                 {
                     this.state.profiles.map((profile) => {
-                        
+
                         return(
-                        
+
                         <li className="collection-item avatar">
-                        <img src={profile['profilePicture']} alt="" className="circle"/>
+                        <a href={`/profile/${profile['firstName']}/${profile['id']}`}>
+                        <img src={profile['profilePicture']} alt={profile['firstName']} className="circle"/>
                         <span className="title">{profile['firstName']} {profile['lastName']}</span>
                         <p> {profile['heading']}
                         </p>
-                        
+                        </a>
                         <a href={`/editprofile/${profile['firstName']}/${profile['id']}`} className="secondary-content material-icons">edit</a>
-                        <a href={`/profile/${profile['firstName']}/${profile['id']}`} className="content material-icons">dvr</a>
-                        
                     </li>
                     )})
-                    
+
                 }
             </ul>
     </div>

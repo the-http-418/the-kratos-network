@@ -38,6 +38,10 @@ div .wrapper-sidenav{
 
 }
 
+div .profile-list{
+  margin: 1%;
+}
+
 .avatar-item{
   margin:10px
 }
