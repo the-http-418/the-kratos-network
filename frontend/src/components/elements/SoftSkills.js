@@ -93,9 +93,10 @@ class SoftSkillsForm extends Component {
                             <div className="container workexp">
                             <div className = 'input-field'>
                                 <datalist id="company-list">
-                                    <option key='1' value="GOOGLE"/>
-                                    <option key='2' value="MICROSOFT"/>
-                                    <option key='3' value="AMAZON"/>
+                                    <option key='1' value="Public Speaking"/>
+                                    <option key='2' value="Hard Work"/>
+                                    <option key='3' value="Team Work"/>
+                                    <option key='4' value="Self Motivated"/>
                                 </datalist>
                                 <input
                                     type="text"
@@ -113,6 +114,8 @@ class SoftSkillsForm extends Component {
                                     id = 'proficiency'
                                     placeholder="Enter Proficiency"
                                     onChange={(e) => this.handleChange(idx,e)}
+                                    min="1"
+                                    max="5"
                                 /></div>
                                 <button type="button" onClick={() => this.handleRemove(idx)}>
                                 Delete Skill
@@ -173,10 +176,13 @@ class SoftSkillsList extends Component {
 }
 
 const HSkills = (props) =>{
+  const devIconStyle = {
+    width: "200px",
+};
     return(
         <div className="container work">
             <div className="heading">
-                <img src="/img/default-company.png" className = "company-logo profile-view"/>
+                <img src="/img/softicon.png" className = "company-logo profile-view" style={devIconStyle}/>
                 <p>{props.softSkillName}</p>
                 <p>{props.proficiency}</p>
             </div>
