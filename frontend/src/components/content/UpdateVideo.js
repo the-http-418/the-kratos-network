@@ -93,15 +93,15 @@ export default class UpdateVideo extends Component {
 
       handleSubmit = (e,id) =>{
         e.preventDefault()
+        console.log("HERE",this.state.content.video_url)
         const db = Fireapp.firestore()
         db.collection("videos").doc(id).update({
-            title:this.state.content['title'],
-            description:this.state.content['description'],
-            thumbnail:this.state.content['thumbnail'],
-            video_url:this.state.content['video_url']
+            'title':this.state.content.title,
+            'description':this.state.content.description,
+            'video_url':this.state.content.video_url
         }).then((ref)=>{
         var items;
-        db.collection("topics").doc(this.state.content['topic_id']).get().then(
+        db.collection("topics").doc(this.state.content.topic_id).get().then(
             (doc)=>{
                 items = doc.data()['items']
             var i;
@@ -112,13 +112,13 @@ export default class UpdateVideo extends Component {
                     break
                 }
             };
-            db.collection("topics").doc(this.state.content['topic_id']).update({
+            db.collection("topics").doc(this.state.content.topic_id).update({
                 items:items
-            }).then(
-        this.setState({
-           redirect:`/topic/${this.state.content['topic_id']}`
+            }).then(()=>{
+                this.setState({
+                redirect:`/topic/${this.state.content['topic_id']}`
                 })
-            )}
+            })}
             )
         })
     }
@@ -137,7 +137,7 @@ export default class UpdateVideo extends Component {
                 <form method="POST" className = "update-video-form">
                     <div className="heading">
                         <h5>Videos
-                        <button type="button" className = "btn right purple darken-3" onClick={this.handleSubmit}>SAVE</button>
+                        <button type="button" className = "btn right purple darken-3" onClick={(e)=>{this.handleSubmit(e,this.state.id)}}>SAVE</button>
                         </h5><br/><div className="divider purple"></div>
                     </div>
                     <br/>

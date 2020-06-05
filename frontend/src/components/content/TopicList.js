@@ -33,13 +33,14 @@ class TopicList extends Component {
         })
         
     }
-    componentWillMount(){
+    componentDidMount(){
         const db = Fireapp.firestore()
         var topics = []
         var count = 0;
         db.collection("topics").get().then(
             (document) => {
-                 document.forEach((doc)=>{
+                 document.forEach(
+                (doc)=>{
                      //check for user   
                      var x = doc.data()
                      x['id'] = doc.id
@@ -61,7 +62,7 @@ class TopicList extends Component {
             )
         }
         else{
-            console.log(this.state)
+            
             if(this.state.redirect){
                 return(<Redirect push to = {this.state.redirect} />)
             }
@@ -71,7 +72,7 @@ class TopicList extends Component {
                     
                     {
                         this.state.topics.map((topic)=>{
-                            console.log(topic)
+                            console.log(topic,"check my props")
                             return(
                                 <Topic id = {topic.id} title = {topic.title} items = {topic.items} />
                             )
