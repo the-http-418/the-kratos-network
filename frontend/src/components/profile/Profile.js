@@ -22,7 +22,7 @@ class Profile extends React.Component {
         const id = this.state.id
         db.collection("profiles").doc(id).get().then(
             (doc) => {
-                
+
                     this.setState( {
                         bio : doc.data()['bio'],
                         education:doc.data()['education'],
@@ -38,7 +38,6 @@ class Profile extends React.Component {
     if(this.state.ready){
     return (
         <div>
-            this is profile
             <div class="col s12 m5">
             <div class="card-panel white">
                 <Bio bio = {this.state.bio} />
@@ -64,7 +63,7 @@ class Profile extends React.Component {
                 <SoftSkillsList softSkills = {this.state.softSkills}/>
             </div>
             </div>
-                
+
         </div>
     )
     }
