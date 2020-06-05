@@ -100,7 +100,29 @@ export default class UpdateTopic extends Component {
             
         })
     }
-    
+    deleteItem (id,type){
+        const db = Fireapp.firestore()
+        var items = this.state.items
+        for(var i=0;i<items.length;i++){
+            if (items[i]['id'] == id && items[i]['type'] == type){
+                break;
+            }
+            
+        }
+        items.splice(i,1);
+        this.setState({
+            items:items
+        })
+        db.collection("topics").doc(this.state.id).update({
+            'items':this.state.items
+        })
+        if (type == "video"){
+            db.collection("videos").doc(id).delete()
+        }
+        else{
+            db.collection("deliverables").doc(id).delete()
+        }
+    }
     render() {
         if(this.state.redirect){
             return(<Redirect to={this.state.redirect}/>)
@@ -141,7 +163,7 @@ export default class UpdateTopic extends Component {
                     {
                         this.state.items.map((item)=>{
                             return(
-                            <ContentListItem type={item.type} id={item.id} name = {item.title} item = {item} />
+                            <ContentListItem type={item.type} id={item.id} name = {item.title} item = {item} delete={(id,type) => this.deleteItem(id,type)} />
                         )})
                     }   
                 </ul>
@@ -166,6 +188,7 @@ const ContentListItem = (props) => {
             <br/>
         
             <p className="flow-text topic-text"><a className="purple-text" href={`/${props.type}/${props.id}`}>{props.name}</a></p>
+            <a href = "#" onClick ={() => props.delete(props.id,props.type)}><i class="material-icons purple-text secondary-content">close</i></a>
         </li>
         
     )

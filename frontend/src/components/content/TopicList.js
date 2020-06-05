@@ -55,6 +55,20 @@ class TopicList extends Component {
         )
          
     }
+    deleteTopic = (id) => {
+        const db = Fireapp.firestore()
+        var topics = this.state.topics
+        for(var i=0;i<topics.length;i++){
+            if (topics[i]['id'] == id){
+                break;
+            }
+        }
+        topics.splice(i,1);
+        this.setState({
+            topics:topics
+        })
+        db.collection("topics").doc(id).delete()
+    }
     render() {
         if(this.state.loading){
             return(
@@ -74,7 +88,7 @@ class TopicList extends Component {
                         this.state.topics.map((topic)=>{
                             console.log(topic,"check my props")
                             return(
-                                <Topic id = {topic.id} title = {topic.title} items = {topic.items} />
+                                <Topic id = {topic.id} title = {topic.title} delete = {(id)=>this.deleteTopic(id)} items = {topic.items} />
                             )
                         })
                     }

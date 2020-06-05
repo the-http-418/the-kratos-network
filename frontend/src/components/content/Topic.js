@@ -27,7 +27,7 @@ export default class Topic extends Component {
                     
                     <ul id={`dropdown-${this.state.id}`} className='dropdown-content'>
                         <li><a href={`/topic/${this.state.id}`} className='purple-text'>edit<span> <i className="material-icons secondary-content tiny purple-text">edit</i></span></a></li>
-                        <li><a href="#!" className='purple-text'>delete<span><i className="material-icons secondary-content tiny purple-text">delete</i></span></a></li>
+                        <li><a href="#" onClick = {()=>this.props.delete(this.state.id)} className='purple-text'>delete<span><i className="material-icons secondary-content tiny purple-text">delete</i></span></a></li>
                     </ul>    
                     
                 </div>
