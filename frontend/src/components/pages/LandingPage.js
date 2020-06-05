@@ -1,6 +1,5 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
-import DevIcon from "devicon-react-svg";
 
 export default function LandingPage() {
     return (
@@ -19,7 +18,6 @@ export default function LandingPage() {
                 Super Admin Sign In
               </div>
             </Link>
-              <DevIcon icon="google" />
             </div>
         </div>
     )

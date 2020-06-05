@@ -10,7 +10,7 @@ export default class Topic extends Component {
         items:this.props.items,
     }
 
-    
+
     componentDidMount(){
         var elems = document.querySelectorAll('.dropdown-trigger');
         var instances = M.Dropdown.init(elems);
@@ -19,16 +19,16 @@ export default class Topic extends Component {
         instances = M.Modal.init(elems);
         
     }
-    render() {  
+    render() {
         return (
             <div className = "topic-hah">
                 <div className = "topic-title">
                     <div className = "wrapper">
                     <h4>{this.props.title}
-                    
+
                     <a className='dropdown-trigger right' href='#' data-target={`dropdown-${this.state.id}`}><i className="material-icons small purple-text">more_vert</i></a>
                     </h4>
-                    
+
                     <ul id={`dropdown-${this.state.id}`} className='dropdown-content'>
                         <li><a href={`/topic/${this.state.id}`} className='purple-text'>edit<span> <i className="material-icons secondary-content tiny purple-text">edit</i></span></a></li>
                         <li><a href={`#modal1-${this.state.id}`} className='modal-trigger purple-text'>delete<span><i className="material-icons secondary-content tiny purple-text">delete</i></span></a></li>
@@ -48,7 +48,7 @@ export default class Topic extends Component {
                 <div className = "topic-item-list">
                     <ul class="collection">
                         {
-                            
+
                             (this.state.loading == true)?<Preloader/>
                             :this.state.items.map((topicItem) => {
                                // console.log(topicItem,"TOPICITEM")
@@ -65,17 +65,17 @@ export default class Topic extends Component {
 
 const TopicItem = (props) => {
     return (
-        
+
         <li className="collection-item avatar thiscollection">
-            
+
             {
-                (props.type == "video")?<i className="avatar-item material-icons circle purple">book</i>
+                (props.type == "video")?<i className="avatar-item material-icons circle purple">movie</i>
                                        :<i className ="avatar-item material-icons circle purple">assignment</i>
             }
             <br/>
-        
+
             <p className="flow-text topic-text">{props.title}</p>
         </li>
-        
+
     )
 }
