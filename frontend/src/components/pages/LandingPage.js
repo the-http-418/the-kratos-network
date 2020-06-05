@@ -9,6 +9,11 @@ export default function LandingPage() {
                 Sign in
               </div>
             </Link>
+            <Link to ='/superadminsignin'>
+              <div className="btn blue white-text">
+                Super Admin Sign In
+              </div>
+            </Link>
             <hr/>
             <hr/>
             Current Routes:<br></br>

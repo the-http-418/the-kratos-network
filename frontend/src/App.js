@@ -1,6 +1,8 @@
 import React from 'react';
 import {BrowserRouter,Switch,Route} from 'react-router-dom';
 import SignIn from './components/auth/SignIn'
+import SuperAdminSignIn from './components/auth/SuperAdminSignIn'
+import CreateAdmin from './components/auth/CreateAdmin'
 import SignUp from './components/auth/SignUp'
 import Content from './components/dashboard/Content'
 import LandingPage from './components/pages/LandingPage'
@@ -33,10 +35,10 @@ function App() {
         <Route path='/generatedProfile/:name/:id' component = {PreviewProfileView}/>
         <Route path='/content' component = {Content}/>
         <Route path='/topic/:id' component = {UpdateTopic}/>
-
         <Route path='/deliverable/:id' component = {UpdateDeliverable}/>
-
         <Route path='/video/:id' component = {UpdateVideo}/>
+        <Route path='/superadminsignin' component = {SuperAdminSignIn}/>
+        <Route path='/createadmin' component = {CreateAdmin}/>
 
       </Switch>
     </div>
