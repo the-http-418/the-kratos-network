@@ -8,7 +8,7 @@ const handleLogout = async () =>{
 }
 const SignedInLinks = () => {
     return(
-        <ul className="right">
+        <ul className="right hide-on-med-and-down">
             <li><NavLink to='/createprofile'>Create Profile</NavLink></li>
             <li><NavLink to='/profiles'>Profiles</NavLink></li>
             <li><NavLink to='/content'>Content</NavLink></li>

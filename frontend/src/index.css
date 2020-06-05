@@ -28,6 +28,10 @@ div .wrapper-sidenav{
   display: inline-block;
 }
 
+.navbar-fixed {
+   z-index: 999;
+}
+
 .create-button{
   border-radius:45px;
   margin:10px;
