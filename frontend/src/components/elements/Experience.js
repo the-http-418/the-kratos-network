@@ -240,10 +240,13 @@ class ExperienceList extends Component {
 }
 
 const Work = (props) =>{
+  const devIconStyle = {
+    width: "200px",
+};
     return(
         <div className="container work">
             <div className="heading">
-                <img src="/img/default-company.png" className = "company-logo profile-view"/>
+                <img src="/img/workicon.jpg" className = "company-logo profile-view" style={devIconStyle}/>
                 <p>{props.companyName}</p>
                 <p>{props.role}</p>
                 <p>{props.startDate} - {props.endDate}</p>

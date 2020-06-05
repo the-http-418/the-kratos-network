@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import Fireapp from '../../config/firebaseConfig'
+import M from 'materialize-css'
 
 const storage = Fireapp.storage();
 const email = Fireapp.auth().currentUser
@@ -49,7 +50,7 @@ class BasicInfoForm extends Component {
           error => {
             // Error function ...
             console.log(error);
-            
+
           },
           () => {
             // complete function ...
@@ -125,17 +126,17 @@ class BasicInfoForm extends Component {
                 )
             })
         }
-        
-        
+
+
 
     }
 
     handleLinkRemove =(idx,e) =>{
         const links = [...this.state.links];
-        links.splice(idx,1)   
+        links.splice(idx,1)
         this.setState({
             links:links
-        })     
+        })
     }
 
     addLink = (e) => {
@@ -160,7 +161,7 @@ class BasicInfoForm extends Component {
         }
     }
     render() {
-        
+
         return (
             <div className="container">
                 <form className = "white">
@@ -200,17 +201,17 @@ class BasicInfoForm extends Component {
                                     value = {link}
                                     placeholder="Enter your link url"
                                     onChange={(e) => this.handleLinkChange(idx,e)}
-  
+
                                 />
                                 <button type="button" onClick={(e) => this.handleLinkRemove(idx)}>
                                 X
                                 </button>
                             </div>
-                       
+
                         )
-                        }) 
+                        })
                     }
-                    
+
                     <button type="button" className="btn pink lighten-1 z-depth-0" onClick={this.addLink}>
                         Add Link
                     </button>
@@ -235,31 +236,33 @@ class Bio extends Component {
     render() {
         return (
             <div className="education profile-view">
-                
+            <h5>ABOUT</h5>
+            <hr/>
+            <br/>
                 <div className="container ouput-bio">
-                    
-                
-            <div className="content">
-                <div className="image-container">
+
+
+            <div className="content row">
+                <div className="image-container col s6">
                 <img src={this.state.profile==''?"img/default_dp":this.state.profilePicture} className = "profile-logo profile-view"/>
                 </div>
-                <div className="information">
+                <div className="information col s6">
+                <b>{this.state.firstName} {this.state.lastName}</b>
                 <p>{this.state.header}</p>
-                <p>{this.state.firstName} {this.state.lastName}</p>
                 <p>{this.state.designation}</p>
-                <h6><b>Meet me</b></h6>
+                <p>Meet Me</p>
                 {
                     this.state.links.map((link)=>
                     {
-                        return(<p>{link}</p>)
+                        return(<p><a href={link}>{link}</a></p>)
                     })
                 }
                 </div>
             </div>
-            
+
         </div>
-                        
-                
+
+
             </div>
         )
     }

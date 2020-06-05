@@ -180,10 +180,13 @@ class EducationList extends Component {
 }
 
 const School = (props) =>{
+  const devIconStyle = {
+    width: "200px",
+};
     return(
         <div className="container work">
             <div className="heading">
-                <img src="/img/default_college.jpg" className = "company-logo profile-view"/>
+                <img src="/img/collegeicon.svg" className = "company-logo profile-view" style={devIconStyle}/>
                 <p>{props.collegeName}</p>
             <p>{props.stream}</p>
                 <p>{props.accolade}</p>

@@ -1,5 +1,8 @@
 import React, { Component } from 'react'
 import Fireapp from '../../config/firebaseConfig'
+import DevIcon from "devicon-react-svg";
+import M from 'materialize-css'
+
 
 const email = Fireapp.auth().currentUser
 
@@ -113,9 +116,9 @@ class HardSkillsForm extends Component {
                             <div className="container workexp">
                             <div className = 'input-field'>
                                 <datalist id="company-list">
-                                    <option key='1' value="GOOGLE"/>
-                                    <option key='2' value="MICROSOFT"/>
-                                    <option key='3' value="AMAZON"/>
+                                    <option key='1' value="java"/>
+                                    <option key='2' value="python"/>
+                                    <option key='3' value="git"/>
                                 </datalist>
                                 <input
                                     type="text"
@@ -133,6 +136,8 @@ class HardSkillsForm extends Component {
                                     id = 'proficiency'
                                     placeholder="Enter Proficiency"
                                     onChange={(e) => this.handleChange(idx,e)}
+                                    min="1"
+                                    max="5"
                                 /></div>
                                 <button type="button" onClick={() => this.handleRemove(idx)}>
                                 Delete Skill
@@ -142,7 +147,7 @@ class HardSkillsForm extends Component {
                         })
                     }
 
-                    <button className="btn pink lighten-1 z-depth-0" onClick={this.addSkill}>
+                    <button type="button" className="btn pink lighten-1 z-depth-0" onClick={this.addSkill}>
                         Add Skill
                     </button>
 
@@ -175,7 +180,7 @@ class HardSkillsList extends Component {
                 <hr/>
                 <div className="container ouput-hardskills">
                     {
-                        
+
                         this.state.hardSkills.map((work)=>{
                             return(
                                 <HSkills
@@ -189,14 +194,17 @@ class HardSkillsList extends Component {
             </div>
         )
     }
-    
+
 }
 
 const HSkills = (props) =>{
+  const devIconStyle = {
+    width: "200px",
+};
     return(
-        <div className="container work">
-            <div className="heading">
-                <img src="/img/default-company.png" className = "company-logo profile-view"/>
+        <div className="container work row">
+            <div className="heading col s6">
+                <DevIcon icon={props.hardSkillName.toLowerCase()} style={devIconStyle}/>
                 <p>{props.hardSkillName}</p>
                 <p>{props.proficiency}</p>
             </div>
