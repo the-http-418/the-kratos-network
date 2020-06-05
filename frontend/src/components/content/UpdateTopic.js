@@ -1,47 +1,160 @@
 import React, { Component } from 'react'
+import Fireapp from '../../config/firebaseConfig'
+import { Preloader } from '../utlis/Preloader'
+import M from 'materialize-css'
+import { Redirect } from 'react-router-dom'
 
 export default class UpdateTopic extends Component {
+    state = {
+            loading:true,
+            id:null,
+            content:null,
+            items:null,
+            redirect:null
+        }
+    componentWillMount(){
+        const db = Fireapp.firestore()
+        const id = this.props.match.params.id
+        db.collection("topics").doc(id).get().then(
+            (doc)=>{
+                this.setState({
+                    id:id,
+                    content:doc.data(),
+                    items:doc.data()['items']?doc.data()['items']:[],
+                    loading:false
+                })
+            }
+        )
+    }
+    handleChange = (e) => {
+        var x = this.state.content
+        x[e.target.id] = e.target.value
+        this.setState({
+            content:x
+        }) 
+    }
+    handleSubmit = (e,id) => {
+        e.preventDefault()
+        const db = Fireapp.firestore()
+        db.collection("topics").doc(id).update({
+            title:this.state.content['title'],
+            description:this.state.content['description'],
+            items:this.state.items
+        }).then(
+            this.setState({
+                redirect:`/content`
+            })
+        )
+    }
+    createVideo  = (e,id) =>{
+        const db = Fireapp.firestore()
+        db.collection("videos").add({
+            'description':'',
+            'title':'Untitled video',
+            'topic_id':id,
+            'type':'video',
+            'video_url':null
+        }).then((docRef)=>{
+            var items = this.state.items;
+            items.push({'title':docRef.title,'id':docRef.id, 'type':'video'})
+            this.setState({
+                items:items
+            })
+            const db = Fireapp.firestore()
+            db.collection("topics").doc(id).update({
+                title:this.state.content['title'],
+                description:this.state.content['description'],
+                items:this.state.items
+            }).then(
+                this.setState({
+                    redirect:`/video/${docRef.id}`
+                })
+            )
+        })
+    }
+    createDeliverable = (e,id) => {
+        const db = Fireapp.firestore()
+        db.collection("deliverables").add({
+            'description':'',
+            'title':'Untitled deliverable',
+            'topic_id':id,
+            'type':'deliverable',
+            'points':'',
+            'deadline':'',
+        }).then((docRef)=>{
+            console.log("KJSHjk",this.state)
+            var items = this.state.items;
+            items.push({'title':"undefined title",'id':docRef.id, 'type':'deliverable'})
+            this.setState({
+                items:items
+            })
+            const db = Fireapp.firestore()
+            db.collection("topics").doc(id).update({
+                title:this.state.content['title'],
+                description:this.state.content['description'],
+                items: this.state.items
+            }).then(
+            this.setState({
+                redirect:`/deliverable/${docRef.id}`
+            })
+            )
+            
+        })
+    }
     render() {
+        if(this.state.redirect){
+            return(<Redirect push to={this.state.redirect}/>)
+        }
+        console.log(this.state)
+        if(this.state.loading == false){
         return (
             <div className = "update-topic">
                 <div className="wrapper-update-topic">
                 <form method="POST" className = "update-topic-form">
                     <div className="heading">
                         <h5>Topic
-                        <button type="button" className = "btn right purple darken-3" onClick="">SAVE</button>
+                        <button type="button" className = "btn right purple darken-3" onClick={(e)  => this.handleSubmit(e,this.state.id)}>SAVE</button>
                         </h5><br/><div className="divider purple"></div>
                     </div>
                     <br/>
                     <div class="row">
-                        <div class="input-field col s6">
-                            <input id="title" type="text"/>
-                            <label for="title">Title</label>
+                        <div class="input-field active col s6">
+                            <input id="title" type="text" value = {this.state.content['title']} onChange={this.handleChange}></input>
+                            <label className = "active" for="title">Title</label>
                         </div>
                     </div>
 
                     <div class="row">
                         <div class="input-field col s12">
-                        <textarea id="textarea1" class="materialize-textarea" type='textarea'/>
-                        <label for="textarea1">Description</label>
+                        <textarea id="description" value = {this.state.content['description']} onChange={this.handleChange} class="materialize-textarea" type='textarea'/>
+                        <label className="active" for="description">Description</label>
                         </div>
                     </div>
                 </form>
                 <div class = "action-buttons">
-                    <a class="waves-effect waves-light btn action-button purple darken-3"><i class="material-icons left">attach_file</i>Video</a>
-                    <a class="waves-effect waves-light btn action-button purple darken-3"><i class="material-icons left">add</i>Deliverable</a>
+                    <button onClick = {(e)=>{this.createVideo(e,this.state.id)}} class="waves-effect waves-light btn action-button purple darken-3"><i class="material-icons left">attach_file</i>Video</button>
+                    <button onClick = {(e)=>{this.createDeliverable(e,this.state.id)}} class="waves-effect waves-light btn action-button purple darken-3"><i class="material-icons left">add</i>Deliverable</button>
                 </div>
 
                
                 <ul class="collection">
-                    <ContentListItem type="video" id="1" name = "topicnamelol"/>
-                    <ContentListItem type="video" id="1" name = "topicnamepeep"/>
+                    {
+                        this.state.items.map((item)=>{
+                            return(
+                            <ContentListItem type="video" id={item.id} name = {item.title} item = {item} />
+                        )})
+                    }   
                 </ul>
                 </div>
             </div>
-        )
+        )}
+        else{
+            return(<Preloader/>)
+        }
     }
 }
 const ContentListItem = (props) => {
+    console.log(props)
     return (
         
         <li className="collection-item avatar thiscollection">
