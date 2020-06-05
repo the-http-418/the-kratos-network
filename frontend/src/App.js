@@ -31,12 +31,12 @@ function App() {
         <Route path='/profile/:name/:id' component = {PublicViewProfile}/>
         <Route path='/editprofile/:name/:id' component = {EditProfile}/>
         <Route path='/generatedProfile/:name/:id' component = {PreviewProfileView}/>
-        <Route path='/content' component = {Content}/>
-        <Route path='/topic/:id' component = {UpdateTopic}/>
+        <Route exact path='/content' component = {Content}/>
+        <Route exact path='/topic/:id' component = {UpdateTopic}/>
 
-        <Route path='/deliverable/:id' component = {UpdateDeliverable}/>
+        <Route exact path='/deliverable/:id' component = {UpdateDeliverable}/>
 
-        <Route path='/video/:id' component = {UpdateVideo}/>
+        <Route exact path='/video/:id' component = {UpdateVideo}/>
 
       </Switch>
     </div>

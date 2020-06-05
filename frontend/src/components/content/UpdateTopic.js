@@ -20,7 +20,7 @@ export default class UpdateTopic extends Component {
                 this.setState({
                     id:id,
                     content:doc.data(),
-                    items:doc.data()['items']?doc.data()['items']:[],
+                    items: doc.data()['items'] ? doc.data()['items']:[],
                     loading:false
                 })
             }
@@ -56,11 +56,10 @@ export default class UpdateTopic extends Component {
             'video_url':null
         }).then((docRef)=>{
             var items = this.state.items;
-            items.push({'title':docRef.title,'id':docRef.id, 'type':'video'})
+            items.push({'title':"undefined title",'id':docRef.id, 'type':'video'})
             this.setState({
                 items:items
             })
-            const db = Fireapp.firestore()
             db.collection("topics").doc(id).update({
                 title:this.state.content['title'],
                 description:this.state.content['description'],
@@ -103,7 +102,7 @@ export default class UpdateTopic extends Component {
     }
     render() {
         if(this.state.redirect){
-            return(<Redirect push to={this.state.redirect}/>)
+            return(<Redirect to={this.state.redirect}/>)
         }
         console.log(this.state)
         if(this.state.loading == false){
@@ -141,7 +140,7 @@ export default class UpdateTopic extends Component {
                     {
                         this.state.items.map((item)=>{
                             return(
-                            <ContentListItem type="video" id={item.id} name = {item.title} item = {item} />
+                            <ContentListItem type={item.type} id={item.id} name = {item.title} item = {item} />
                         )})
                     }   
                 </ul>
@@ -165,7 +164,7 @@ const ContentListItem = (props) => {
             }
             <br/>
         
-            <p className="flow-text topic-text">{props.name}</p>
+            <p className="flow-text topic-text"><a className="purple-text" href={`/${props.type}/${props.id}`}>{props.name}</a></p>
         </li>
         
     )
