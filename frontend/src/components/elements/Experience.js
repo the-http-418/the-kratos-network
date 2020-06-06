@@ -190,7 +190,7 @@ class ExperienceForm extends Component {
                     }
 
                     <button type="button" className="btn pink lighten-1 z-depth-0" onClick={this.addExperience}>
-                        Add Education
+                        Add Experience
                     </button>
 
                     <div className="input-field">

@@ -171,7 +171,7 @@ class BasicInfoForm extends Component {
                     <hr/>
                     <div className="input-field">
                         Upload your dp:
-                        <input type="file" file= {this.state.image} id = "image" onChange={this.handleImageChange} />
+                        <input type="file" file= {this.state.image} id = "image" onChange={this.handleImageChange} className="button"/>
                         <button type="button" className="btn pink white-text" onClick={this.handleImageUpload}>UPLOAD</button>
                         <div className="progressBar">{this.state.progress}</div>
                     </div>
