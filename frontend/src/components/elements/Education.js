@@ -159,7 +159,7 @@ class EducationList extends Component {
     render() {
         return (
             <div className="education profile-view">
-                <h5>EDUCATION</h5>
+                <h5 className="purple-text">EDUCATION</h5>
                 <hr/>
                 <div className="container ouput-education">
                     {
@@ -187,7 +187,7 @@ const School = (props) =>{
         <div className="container work">
             <div className="heading">
                 <img src="/img/collegeicon.svg" className = "company-logo profile-view" style={devIconStyle}/>
-                <p>{props.collegeName}</p>
+                <p className="flow-text">{props.collegeName}</p>
             <p>{props.stream}</p>
                 <p>{props.accolade}</p>
             </div>

@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import Fireapp from '../../config/firebaseConfig'
-
+import Ratings from '../utlis/Ratings'
 const email = Fireapp.auth().currentUser
 class SoftSkillsForm extends Component {
     state = {
@@ -155,8 +155,8 @@ class SoftSkillsList extends Component {
 
         return (
             <div className="softskills profile-view">
-                <h5>SOFT SKILLS</h5>
-                <hr/>
+                <h5 className="purple-text">SOFT SKILLS</h5>
+                <hr />
                 <div className="container ouput-softskills">
                     {
                         this.state.softSkills.map((work)=>{
@@ -180,11 +180,12 @@ const HSkills = (props) =>{
     width: "200px",
 };
     return(
-        <div className="container work">
-            <div className="heading">
+        <div className="container work  m6 s12">
+            <div className="heading soft-skills-container  ">
+            <p className="flow-text">{props.softSkillName}</p>
                 <img src="/img/softicon.png" className = "company-logo profile-view" style={devIconStyle}/>
-                <p>{props.softSkillName}</p>
-                <p>{props.proficiency}</p>
+               
+                <p><Ratings rating={props.proficiency}/></p>
             </div>
         </div>
     )

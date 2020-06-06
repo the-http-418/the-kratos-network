@@ -37,7 +37,7 @@ class Profile extends React.Component {
     render(){
     if(this.state.ready){
     return (
-        <div>
+        <div className = "profile-wrapper">
             <div class="col s12 m5">
             <div class="card-panel white">
                 <Bio bio = {this.state.bio} />

@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import Fireapp from '../../config/firebaseConfig'
 import DevIcon from "devicon-react-svg";
 import M from 'materialize-css'
-
+import Ratings from '../utlis/Ratings'
 
 const email = Fireapp.auth().currentUser
 
@@ -176,9 +176,10 @@ class HardSkillsList extends Component {
     render() {
         return (
             <div className="hardskills profile-view">
-                <h5>HARD SKILLS</h5>
+                <h5 className="purple-text">HARD SKILLS</h5>
                 <hr/>
-                <div className="container ouput-hardskills">
+                <div className="container  ouput-hardskills">
+                <div className="container-work row">
                     {
 
                         this.state.hardSkills.map((work)=>{
@@ -190,6 +191,7 @@ class HardSkillsList extends Component {
                             )
                        })
                     }
+                    </div>
                 </div>
             </div>
         )
@@ -202,13 +204,13 @@ const HSkills = (props) =>{
     width: "200px",
 };
     return(
-        <div className="container work row">
-            <div className="heading col s6">
+        
+            <div className="heading col m6 s12">
                 <DevIcon icon={props.hardSkillName.toLowerCase()} style={devIconStyle}/>
                 <p>{props.hardSkillName}</p>
-                <p>{props.proficiency}</p>
+                <p><Ratings rating = {props.proficiency}/></p>
             </div>
-        </div>
+        
     )
 }
 export default HardSkillsForm

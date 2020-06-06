@@ -120,7 +120,7 @@ class ExperienceForm extends Component {
         return (
             <div className="container">
                 <form onSubmit ={this.handleSubmit} className = "white">
-                    <h5 className="grey-text text-darken-3">
+                    <h5 className="grey-text  text-darken-3">
                         Work Experience
                     </h5>
                     <hr/>
@@ -217,7 +217,7 @@ class ExperienceList extends Component {
     render() {
         return (
             <div className="experience profile-view">
-                <h5>EXPERIENCE</h5>
+                <h5 className="purple-text">EXPERIENCE</h5>
                 <hr/>
                 <div className="container ouput-experience">
                     {
@@ -246,8 +246,9 @@ const Work = (props) =>{
     return(
         <div className="container work">
             <div className="heading">
+                
                 <img src="/img/workicon.jpg" className = "company-logo profile-view" style={devIconStyle}/>
-                <p>{props.companyName}</p>
+                <p className="flow-text">{props.companyName}</p>
                 <p>{props.role}</p>
                 <p>{props.startDate} - {props.endDate}</p>
             </div>

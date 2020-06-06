@@ -191,3 +191,25 @@ div .profile-list{
     background-color: rgb(99, 15, 121);
   }
 }
+
+.profile-wrapper{
+  background-color: rgb(231, 225, 236);
+  padding:80px;
+  text-align: center;
+}
+
+.card-panel{
+  min-width: 60%;
+  display: inline-block;
+}
+
+.information-profile{
+  padding:10px;
+}
+.profile-logo{
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2),0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.soft-skills-container {
+  padding:20px;
+}

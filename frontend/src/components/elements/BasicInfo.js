@@ -236,27 +236,31 @@ class Bio extends Component {
     render() {
         return (
             <div className="education profile-view">
-            <h5>ABOUT</h5>
+            <h5 className = "purple-text">ABOUT</h5>
             <hr/>
             <br/>
                 <div className="container ouput-bio">
 
 
             <div className="content row">
-                <div className="image-container col s6">
-                <img src={this.state.profile==''?"img/default_dp":this.state.profilePicture} className = "profile-logo profile-view"/>
+                <div className="image-container col s12 m6">
+                <img  src={this.state.profile==''?"img/default_dp":this.state.profilePicture} className = "profile-logo profile-view circle"/>
                 </div>
-                <div className="information col s6">
-                <b>{this.state.firstName} {this.state.lastName}</b>
-                <p>{this.state.header}</p>
+                <div className="information-profile col s12 m6">
+                <p className="">{this.state.header}</p>
+                <p className="flow-text"><b>{this.state.firstName} {this.state.lastName}</b></p>
+                
                 <p>{this.state.designation}</p>
-                <p>Meet Me</p>
+                <hr/>
+                { this.state.links?<p><b>Meet Me</b></p>:<br/> }
+                
                 {
                     this.state.links.map((link)=>
                     {
-                        return(<p><a href={link}>{link}</a></p>)
+                        return(<p><a className="purple-text" href={link}>{link}</a></p>)
                     })
                 }
+                
                 </div>
             </div>
 
